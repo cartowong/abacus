@@ -7,19 +7,6 @@ from Core import Problem, Skill
 # Private utility functions.
 # ============================================================
 
-def __simple_addition_or_subtraction(allow_upper_bead):
-    """
-    Randomly generate a simple additon/subtraction problem.
-
-    :param allow_upper_bead: bool Is upper bead movement allowed?
-    :return: Problem
-    """
-    a = random.randint(0, 99)
-    b = __pick_simple_addend(a, allow_upper_bead)
-    c = __pick_simple_addend(a + b, allow_upper_bead)
-    return Problem(a, b, c)
-
-
 def __pick_simple_addend(x, allow_upper_bead):
     """
     Given an integer x, randomly choose a simple, non-zero addend y between -9 and 9. By simple,
@@ -77,6 +64,19 @@ def __randproblem(a, b):
 # ============================================================
 # Private problem generators.
 # ============================================================
+
+def __generate_simple_addition_subtraction(allow_upper_bead):
+    """
+    Randomly generate a simple addition/subtraction problem.
+
+    :param allow_upper_bead: bool Is upper bead movement allowed?
+    :return: Problem
+    """
+    a = random.randint(0, 99)
+    b = __pick_simple_addend(a, allow_upper_bead)
+    c = __pick_simple_addend(a + b, allow_upper_bead)
+    return Problem(a, b, c)
+
 
 # Generate problem for a skill of the form +a = -b + 5 or
 # -a = +b - 5, where a + b = 5.
@@ -172,9 +172,9 @@ def __generate_no_carry_borrow():
 # ============================================================
 
 simple_addition_or_subtraction = Skill("Simple addition or subtraction",
-                                       lambda: __simple_addition_or_subtraction(False))
+                                       lambda: __generate_simple_addition_subtraction(False))
 simple_addition_or_subtraction_allow_upper_bead = Skill("Simple addition or subtraction (allow upper bead)",
-                                                        lambda: __simple_addition_or_subtraction(True))
+                                                        lambda: __generate_simple_addition_subtraction(True))
 plus1_eq_minus4_plus5 = Skill("+1 = -4 + 5", __generate_plus1_eq_minus4_plus5)
 minus1_eq_plus4_minus5 = Skill("-1 = +4 - 5", __generate_minus1_eq_plus4_minus5)
 plus2_eq_minus3_plus5 = Skill("+2 = -3 + 5", __generate_plus2_eq_minus3_plus5)
