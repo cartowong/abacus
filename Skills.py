@@ -201,6 +201,26 @@ def __generate_no_carry_borrow():
 
 
 # ============================================================
+
+def __generate_plus5_eq_minus5_plus10():
+    """
+    Generate a problem for the skill +5 = -5 + 10.
+    :return: Problem
+    """
+    a = random.choice([5, 15, 25, 35, 55, 65, 75, 85])
+    return __extend_no_carry_borrow(a, 5)
+
+
+def __generate_minus5_eq_plus5_minus10():
+    """
+    Generate a problem for the skill +5 = -5 + 10.
+    :return: Problem
+    """
+    a = random.choice([10, 20, 30, 40, 60, 70, 80, 90])
+    return __extend_no_carry_borrow(a, -5)
+
+
+# ============================================================
 # Public skills to be accessed by the Steps module.
 # ============================================================
 
@@ -219,4 +239,6 @@ minus4_eq_plus1_minus5 = Skill("-4 = +1 - 5", __generate_minus4_eq_plus1_minus5)
 
 no_carry_borrow = Skill("No carry or borrow", __generate_no_carry_borrow)
 
+plus5_eq_minus5_plus10 = Skill("+5 = -5 + 10", __generate_plus5_eq_minus5_plus10)
+minus5_eq_plus5_minus10 = Skill("-5 = +5 - 10", __generate_minus5_eq_plus5_minus10)
 
