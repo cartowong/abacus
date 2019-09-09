@@ -4,7 +4,7 @@ Developer's note: The file readme.md is program generated. Do not edit the file 
 
 **Introduction**
 
-The python program *Abacus* generates random problems for kids to practice [abacus](https://en.wikipedia.org/wiki/Abacus). The
+The python program *Abacus* generates random practice problems for [abacus](https://en.wikipedia.org/wiki/Abacus). The
 main features are:
 * interactive interface that allows you to customize the problems for a specific set of skills
 * printer-friendly HTML output

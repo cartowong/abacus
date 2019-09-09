@@ -65,8 +65,8 @@ def response(steps, choices):
     num_problems = 15
     problems = [random.choice(chosen_steps).sample() for j in range(num_problems)]
     steps_string = ", ".join(str(c) for c in choices) if len(choices) > 1 else steps[choices[0]-1].description()
-    if not os.path.exists("../output"):
-        os.mkdir("../output")
+    if not os.path.exists("output"):
+        os.mkdir("output")
     output_problems(problems, steps_string, "html/problemsTemplate.html", "output/problems.html")
     output_steps(steps, "html/stepsTemplate.html", "output/steps.html")
     update_readme(steps, "readmeTemplate.md", "readme.md")
