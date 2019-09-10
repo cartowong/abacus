@@ -1,5 +1,6 @@
 ```buildoutcfg
-Developer's note: The file readme.md is program generated. Do not edit the file readme.md. Edit readmeTemplate.md instead.
+Developer's note:
+The file readme.md is program generated. Do not edit it. Edit readmeTemplate.md instead.
 ```
 
 **Introduction**
