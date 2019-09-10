@@ -34,5 +34,8 @@ steps = [
     Step(si.plus6_eq_minus4_plus10, si.minus6_eq_plus4_minus10),
     Step(si.plus7_eq_minus3_plus10),
     Step(si.minus7_eq_plus3_minus10),
-    Step(si.plus7_eq_minus3_plus10, si.minus7_eq_plus3_minus10)
+    Step(si.plus7_eq_minus3_plus10, si.minus7_eq_plus3_minus10),
+    Step(si.plus8_eq_minus2_plus10),
+    Step(si.minus8_eq_plus2_minus10),
+    Step(si.plus8_eq_minus2_plus10, si.minus8_eq_plus2_minus10)
 ]
