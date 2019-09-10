@@ -25,5 +25,11 @@ steps = [
          si.minus3_eq_plus2_minus5,
          si.plus4_eq_minus1_plus5,
          si.minus4_eq_plus1_minus5).with_description('Combo - steps 5, 8, 11, 14'),
-    Step(si.no_carry_borrow)
+    Step(si.no_carry_borrow),
+    Step(si.plus5_eq_minus5_plus10),
+    Step(si.minus5_eq_plus5_minus10),
+    Step(si.plus5_eq_minus5_plus10, si.minus5_eq_plus5_minus10),
+    Step(si.plus6_eq_minus4_plus10),
+    Step(si.minus6_eq_plus4_minus10),
+    Step(si.plus6_eq_minus4_plus10, si.minus6_eq_plus4_minus10)
 ]

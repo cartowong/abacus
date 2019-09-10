@@ -17,7 +17,7 @@ Install Python 3.7.4 or later. See [Download Python](https://www.python.org/down
 
 **Usage**
 
-Clone this repository, cd into the repository root folder, and then run `python3 abacus.py`. In the console, you will
+Clone this repository, cd into the repository root folder, and then run `python3 abacus.py` (or `python abacus.py` depending on your environment). In the console, you will
 see the complete list of steps and will be asked to enter the steps you want to practice.
 
 ```buildoutcfg
@@ -37,6 +37,12 @@ Step 13: -4 = +1 - 5
 Step 14: +4 = -1 + 5, -4 = +1 - 5
 Step 15: Combo - steps 5, 8, 11, 14
 Step 16: No carry or borrow
+Step 17: +5 = -5 + 10
+Step 18: -5 = +5 - 10
+Step 19: +5 = -5 + 10, -5 = +5 - 10
+Step 20: +6 = -4 + 10
+Step 21: -6 = +4 - 10
+Step 22: +6 = -4 + 10, -6 = +4 - 10
 
 Choose steps (e.g. 1-3, 5):
 ```
