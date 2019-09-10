@@ -216,16 +216,16 @@ def __generate_plus5_eq_minus5_plus10():
     Generate a problem for the skill +5 = -5 + 10.
     :return: Problem
     """
-    a = 10 * random.choice(__digits_no49) + 5
+    a = 10 * random.choice(__digits_no49) + random.choice([5, 6, 7, 8, 9])
     return __extend_no_carry_borrow(a, 5)
 
 
 def __generate_minus5_eq_plus5_minus10():
     """
-    Generate a problem for the skill +5 = -5 + 10.
+    Generate a problem for the skill -5 = +5 - 10.
     :return: Problem
     """
-    a = 10 * random.choice(__digits_no05)
+    a = 10 * random.choice(__digits_no05) + random.choice([0, 1, 2, 3, 4])
     return __extend_no_carry_borrow(a, -5)
 
 
