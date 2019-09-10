@@ -18,7 +18,7 @@ Install Python 3.7.4 or later. See [Download Python](https://www.python.org/down
 **Usage**
 
 Clone this repository, cd into the repository root folder, and then run `python3 abacus.py` (or `python abacus.py` depending on your environment). In the console, you will
-see the complete list of steps and will be asked to enter the steps you want to practice.
+see the complete list of steps and will be asked to enter the steps you want to practice. You may enter a range (e.g. 1-3), a number (e.g. 5), or a mix of both.
 
 ```buildoutcfg
 Step 1: Simple addition or subtraction
