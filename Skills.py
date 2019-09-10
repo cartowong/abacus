@@ -247,6 +247,24 @@ def __generate_minus6_eq_plus4_minus10():
     return __extend_no_carry_borrow(a, -6)
 
 
+def __generate_plus7_eq_minus3_plus10():
+    """
+    Generate a problem for the skill +7 = -3 + 10.
+    :return: Problem
+    """
+    a = 10 * random.choice(__digits_no49) + random.choice([3, 4, 8, 9])
+    return __extend_no_carry_borrow(a, 7)
+
+
+def __generate_minus7_eq_plus3_minus10():
+    """
+    Generate a problem for the skill -7 = +3 - 10.
+    :return: Problem
+    """
+    a = 10 * random.choice(__digits_no05) + random.choice([0, 1, 5, 6])
+    return __extend_no_carry_borrow(a, -7)
+
+
 # ============================================================
 # Public skills to be accessed by the Steps module.
 # ============================================================
@@ -270,5 +288,8 @@ plus5_eq_minus5_plus10 = Skill("+5 = -5 + 10", __generate_plus5_eq_minus5_plus10
 minus5_eq_plus5_minus10 = Skill("-5 = +5 - 10", __generate_minus5_eq_plus5_minus10)
 plus6_eq_minus4_plus10 = Skill("+6 = -4 + 10", __generate_plus6_eq_minus4_plus10)
 minus6_eq_plus4_minus10 = Skill("-6 = +4 - 10", __generate_minus6_eq_plus4_minus10)
+plus7_eq_minus3_plus10 = Skill("+7 = -3 + 10", __generate_plus7_eq_minus3_plus10)
+minus7_eq_plus3_minus10 = Skill("-7 = +3 - 10", __generate_minus7_eq_plus3_minus10)
+
 
 
