@@ -28,5 +28,8 @@ steps = [
     Step(si.no_carry_borrow),
     Step(si.plus5_eq_minus5_plus10),
     Step(si.minus5_eq_plus5_minus10),
-    Step(si.plus5_eq_minus5_plus10, si.minus5_eq_plus5_minus10)
+    Step(si.plus5_eq_minus5_plus10, si.minus5_eq_plus5_minus10),
+    Step(si.plus6_eq_minus4_plus10),
+    Step(si.minus6_eq_plus4_minus10),
+    Step(si.plus6_eq_minus4_plus10, si.minus6_eq_plus4_minus10)
 ]

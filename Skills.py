@@ -4,6 +4,14 @@ from Core import Problem, Skill
 
 
 # ============================================================
+# Private constants.
+# ============================================================
+
+__digits_no49 = (0, 1, 2, 3, 5, 6, 7, 8)
+__digits_no05 = (1, 2, 3, 4, 6, 7, 8, 9)
+
+
+# ============================================================
 # Private utility functions.
 # ============================================================
 
@@ -202,12 +210,13 @@ def __generate_no_carry_borrow():
 
 # ============================================================
 
+
 def __generate_plus5_eq_minus5_plus10():
     """
     Generate a problem for the skill +5 = -5 + 10.
     :return: Problem
     """
-    a = random.choice([5, 15, 25, 35, 55, 65, 75, 85])
+    a = 10 * random.choice(__digits_no49) + 5
     return __extend_no_carry_borrow(a, 5)
 
 
@@ -216,8 +225,26 @@ def __generate_minus5_eq_plus5_minus10():
     Generate a problem for the skill +5 = -5 + 10.
     :return: Problem
     """
-    a = random.choice([10, 20, 30, 40, 60, 70, 80, 90])
+    a = 10 * random.choice(__digits_no05)
     return __extend_no_carry_borrow(a, -5)
+
+
+def __generate_plus6_eq_minus4_plus10():
+    """
+    Generate a problem for the skill +6 = -4 + 10.
+    :return: Problem
+    """
+    a = 10 * random.choice(__digits_no49) + random.choice([4, 9])
+    return __extend_no_carry_borrow(a, 6)
+
+
+def __generate_minus6_eq_plus4_minus10():
+    """
+    Generate a problem for the skill -6 = +4 - 10.
+    :return: Problem
+    """
+    a = 10 * random.choice(__digits_no05) + random.choice([0, 5])
+    return __extend_no_carry_borrow(a, -6)
 
 
 # ============================================================
@@ -241,4 +268,7 @@ no_carry_borrow = Skill("No carry or borrow", __generate_no_carry_borrow)
 
 plus5_eq_minus5_plus10 = Skill("+5 = -5 + 10", __generate_plus5_eq_minus5_plus10)
 minus5_eq_plus5_minus10 = Skill("-5 = +5 - 10", __generate_minus5_eq_plus5_minus10)
+plus6_eq_minus4_plus10 = Skill("+6 = -4 + 10", __generate_plus6_eq_minus4_plus10)
+minus6_eq_plus4_minus10 = Skill("-6 = +4 - 10", __generate_minus6_eq_plus4_minus10)
+
 

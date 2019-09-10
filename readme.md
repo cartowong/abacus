@@ -39,6 +39,9 @@ Step 16: No carry or borrow
 Step 17: +5 = -5 + 10
 Step 18: -5 = +5 - 10
 Step 19: +5 = -5 + 10, -5 = +5 - 10
+Step 20: +6 = -4 + 10
+Step 21: -6 = +4 - 10
+Step 22: +6 = -4 + 10, -6 = +4 - 10
 
 Choose steps (e.g. 1-3, 5):
 ```
