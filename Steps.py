@@ -40,5 +40,17 @@ steps = [
     Step(si.plus8_eq_minus2_plus10, si.minus8_eq_plus2_minus10),
     Step(si.plus9_eq_minus1_plus10),
     Step(si.minus9_eq_plus1_minus10),
-    Step(si.plus9_eq_minus1_plus10, si.minus9_eq_plus1_minus10)
+    Step(si.plus9_eq_minus1_plus10, si.minus9_eq_plus1_minus10),
+    Step(si.plus1_eq_minus9_plus10),
+    Step(si.minus1_eq_plus9_minus10),
+    Step(si.plus1_eq_minus9_plus10, si.minus1_eq_plus9_minus10),
+    Step(si.plus2_eq_minus8_plus10),
+    Step(si.minus2_eq_plus8_minus10),
+    Step(si.plus2_eq_minus8_plus10, si.minus2_eq_plus8_minus10),
+    Step(si.plus3_eq_minus7_plus10),
+    Step(si.minus3_eq_plus7_minus10),
+    Step(si.plus3_eq_minus7_plus10, si.minus3_eq_plus7_minus10),
+    Step(si.plus4_eq_minus6_plus10),
+    Step(si.minus4_eq_plus6_minus10),
+    Step(si.plus4_eq_minus6_plus10, si.minus4_eq_plus6_minus10)
 ]

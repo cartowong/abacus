@@ -211,6 +211,78 @@ def __generate_no_carry_borrow():
 # ============================================================
 
 
+def __generate_plus1_eq_minus9_plus10():
+    """
+    Generate a problem for the skill +1 = -9 + 10.
+    :return: Problem
+    """
+    a = 10 * random.choice(__digits_no49) + 9
+    return __extend_no_carry_borrow(a, 1)
+
+
+def __generate_minus1_eq_plus9_minus10():
+    """
+    Generate a problem for the skill -1 = +9 - 10.
+    :return: Problem
+    """
+    a = 10 * random.choice(__digits_no05)
+    return __extend_no_carry_borrow(a, -1)
+
+
+def __generate_plus2_eq_minus8_plus10():
+    """
+    Generate a problem for the skill +2 = -8 + 10.
+    :return: Problem
+    """
+    a = 10 * random.choice(__digits_no49) + random.choice([8, 9])
+    return __extend_no_carry_borrow(a, 2)
+
+
+def __generate_minus2_eq_plus8_minus10():
+    """
+    Generate a problem for the skill -2 = +8 - 10.
+    :return: Problem
+    """
+    a = 10 * random.choice(__digits_no05) + random.choice([0, 1])
+    return __extend_no_carry_borrow(a, -2)
+
+
+def __generate_plus3_eq_minus7_plus10():
+    """
+    Generate a problem for the skill +3 = -7 + 10.
+    :return: Problem
+    """
+    a = 10 * random.choice(__digits_no49) + random.choice([7, 8, 9])
+    return __extend_no_carry_borrow(a, 3)
+
+
+def __generate_minus3_eq_plus7_minus10():
+    """
+    Generate a problem for the skill -3 = +7 - 10.
+    :return: Problem
+    """
+    a = 10 * random.choice(__digits_no05) + random.choice([0, 1, 2])
+    return __extend_no_carry_borrow(a, -3)
+
+
+def __generate_plus4_eq_minus6_plus10():
+    """
+    Generate a problem for the skill +4 = -6 + 10.
+    :return: Problem
+    """
+    a = 10 * random.choice(__digits_no49) + random.choice([6, 7, 8, 9])
+    return __extend_no_carry_borrow(a, 4)
+
+
+def __generate_minus4_eq_plus6_minus10():
+    """
+    Generate a problem for the skill -4 = +6 - 10.
+    :return: Problem
+    """
+    a = 10 * random.choice(__digits_no05) + random.choice([0, 1, 2, 3])
+    return __extend_no_carry_borrow(a, -4)
+
+
 def __generate_plus5_eq_minus5_plus10():
     """
     Generate a problem for the skill +5 = -5 + 10.
@@ -319,6 +391,15 @@ plus4_eq_minus1_plus5 = Skill("+4 = -1 + 5", __generate_plus4_eq_minus1_plus5)
 minus4_eq_plus1_minus5 = Skill("-4 = +1 - 5", __generate_minus4_eq_plus1_minus5)
 
 no_carry_borrow = Skill("No carry or borrow", __generate_no_carry_borrow)
+
+plus1_eq_minus9_plus10 = Skill("+1 = -9 + 10", __generate_plus1_eq_minus9_plus10)
+minus1_eq_plus9_minus10 = Skill("-1 = +9 - 10", __generate_minus1_eq_plus9_minus10)
+plus2_eq_minus8_plus10 = Skill("+2 = -8 + 10", __generate_plus2_eq_minus8_plus10)
+minus2_eq_plus8_minus10 = Skill("-2 = +8 - 10", __generate_minus2_eq_plus8_minus10)
+plus3_eq_minus7_plus10 = Skill("+3 = -7 + 10", __generate_plus3_eq_minus7_plus10)
+minus3_eq_plus7_minus10 = Skill("-3 = +7 - 10", __generate_minus3_eq_plus7_minus10)
+plus4_eq_minus6_plus10 = Skill("+4 = -6 + 10", __generate_plus4_eq_minus6_plus10)
+minus4_eq_plus6_minus10 = Skill("-4 = +6 - 10", __generate_minus4_eq_plus6_minus10)
 
 plus5_eq_minus5_plus10 = Skill("+5 = -5 + 10", __generate_plus5_eq_minus5_plus10)
 minus5_eq_plus5_minus10 = Skill("-5 = +5 - 10", __generate_minus5_eq_plus5_minus10)
