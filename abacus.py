@@ -13,6 +13,18 @@ def main():
     response(steps, choices)
 
 
+def clear_dir(dir, extension):
+    """
+    Delete all files in the given directory with the given extension.
+    :param dir: str the path of the directory
+    :param extension: str type of the files to be deleted
+    :return: void
+    """
+    files = [f for f in os.listdir(dir) if f.endswith(extension)]
+    for f in files:
+        os.remove(os.path.join(dir, f))
+
+
 def parse_choices(choices_string):
     """
     Parse the raw choices.
@@ -59,25 +71,36 @@ def response(steps, choices):
     :param choices: List(int) the integer choices that represent the steps from the menu
     :return: void
     """
-    print(f"Your choice(s): {','.join([str(x) for x in choices])}")
+    print(f"Your choice(s): {','.join([str(x) for x in choices])}\n")
 
-    chosen_steps = [steps[c - 1] for c in choices]
-    num_problems = 15
-    problems = [random.choice(chosen_steps).sample() for j in range(num_problems)]
-    steps_string = ", ".join(str(c) for c in choices) if len(choices) > 1 else steps[choices[0]-1].description()
+    # Create the output directory and clean up output files from the previous run.
     if not os.path.exists("output"):
         os.mkdir("output")
-    output_problems(problems, steps_string, "html/problemsTemplate.html", "output/problems.html")
-    output_steps(steps, "html/stepsTemplate.html", "output/steps.html")
+    clear_dir("output", "html")
+
+    # Output the complete list of steps and update the readme file.
+    output_steps(steps, os.path.join("html", "stepsTemplate.html"), os.path.join("output", "steps.html"))
     update_readme(steps, "readmeTemplate.md", "readme.md")
+    print("")
+
+    # Output the problem sets as HTML files (one step per file).
+    num_problems = 15
+    for c in choices:
+        step = steps[c-1]
+        problems = [step.sample() for j in range(num_problems)]
+        output_problems(
+            problems,
+            step.description(),
+            os.path.join("html", "problemsTemplate.html"),
+            os.path.join("output", f"{c:02d}.html"))
 
 
-def output_problems(problems, steps_string, template_path, output_path):
+def output_problems(problems, step_description, template_path, output_path):
     """
     Output the given problems to an HTML file.
 
     :param problems: List(Problem) the problems
-    :param steps_string: str the chosen step(s)
+    :param step_description: str the description of the step
     :param template_path: str path of the template file
     :param output_path: str path of the output file
     :return: void
@@ -85,12 +108,12 @@ def output_problems(problems, steps_string, template_path, output_path):
     with open(template_path, "r") as fin, open(output_path, "w") as fout:
         text = fin.read()
         for index, problem in enumerate(problems, start=1):
-            text = text.replace("{steps}", steps_string)
+            text = text.replace("{step}", step_description)
             text = text.replace(f"{{a{index}}}", str(problem.a()))
             text = text.replace(f"{{b{index}}}", signed_int(problem.b()))
             text = text.replace(f"{{c{index}}}", signed_int(problem.c()))
         fout.write(text)
-    print(f"The problems have been written into {output_path} using table format.")
+    print(f"Output file created: {output_path}")
 
 
 def output_steps(steps, template_path, output_path):
