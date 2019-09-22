@@ -22,52 +22,54 @@ Clone this repository, cd into the repository root directory, and then run the s
 see the complete list of steps and will be asked to enter the steps you want to practice. You may enter a range (e.g. 1-3), a number (e.g. 5), or a mix of both separated by commas (e.g. 1-3, 5).
 
 ```buildoutcfg
-Step 1: Simple addition or subtraction
-Step 2: Simple addition or subtraction (allow upper bead)
-Step 3: +1 = -4 + 5
-Step 4: -1 = +4 - 5
-Step 5: +1 = -4 + 5, -1 = +4 - 5
-Step 6: +2 = -3 + 5
-Step 7: -2 = +3 - 5
-Step 8: +2 = -3 + 5, -2 = +3 - 5
-Step 9: +3 = -2 + 5
-Step 10: -3 = +2 - 5
-Step 11: +3 = -2 + 5, -3 = +2 - 5
-Step 12: +4 = -1 + 5
-Step 13: -4 = +1 - 5
-Step 14: +4 = -1 + 5, -4 = +1 - 5
-Step 15: Combo - steps 5, 8, 11, 14
-Step 16: No carry or borrow
-Step 17: +5 = -5 + 10
-Step 18: -5 = +5 - 10
-Step 19: +5 = -5 + 10, -5 = +5 - 10
-Step 20: +6 = -4 + 10
-Step 21: -6 = +4 - 10
-Step 22: +6 = -4 + 10, -6 = +4 - 10
-Step 23: +7 = -3 + 10
-Step 24: -7 = +3 - 10
-Step 25: +7 = -3 + 10, -7 = +3 - 10
-Step 26: +8 = -2 + 10
-Step 27: -8 = +2 - 10
-Step 28: +8 = -2 + 10, -8 = +2 - 10
-Step 29: +9 = -1 + 10
-Step 30: -9 = +1 - 10
-Step 31: +9 = -1 + 10, -9 = +1 - 10
-Step 32: Combo - steps 19, 22, 25, 28, 31
-Step 33: +1 = -9 + 10
-Step 34: -1 = +9 - 10
-Step 35: +1 = -9 + 10, -1 = +9 - 10
-Step 36: +2 = -8 + 10
-Step 37: -2 = +8 - 10
-Step 38: +2 = -8 + 10, -2 = +8 - 10
-Step 39: +3 = -7 + 10
-Step 40: -3 = +7 - 10
-Step 41: +3 = -7 + 10, -3 = +7 - 10
-Step 42: +4 = -6 + 10
-Step 43: -4 = +6 - 10
-Step 44: +4 = -6 + 10, -4 = +6 - 10
-Step 45: Combo - steps 35, 38, 41, 44
-Step 46: Combo - steps 19, 22, 25, 28, 31, 35, 38, 41, 44
+Step 1: Single digit addition or subtraction
+Step 2: Single digit addition or subtraction (allow upper bead)
+Step 3: Simple addition or subtraction
+Step 4: Simple addition or subtraction (allow upper bead)
+Step 5: +1 = -4 + 5
+Step 6: -1 = +4 - 5
+Step 7: +1 = -4 + 5, -1 = +4 - 5
+Step 8: +2 = -3 + 5
+Step 9: -2 = +3 - 5
+Step 10: +2 = -3 + 5, -2 = +3 - 5
+Step 11: +3 = -2 + 5
+Step 12: -3 = +2 - 5
+Step 13: +3 = -2 + 5, -3 = +2 - 5
+Step 14: +4 = -1 + 5
+Step 15: -4 = +1 - 5
+Step 16: +4 = -1 + 5, -4 = +1 - 5
+Step 17: Combo - steps 7, 10, 13, 16
+Step 18: No carry or borrow
+Step 19: +5 = -5 + 10
+Step 20: -5 = +5 - 10
+Step 21: +5 = -5 + 10, -5 = +5 - 10
+Step 22: +6 = -4 + 10
+Step 23: -6 = +4 - 10
+Step 24: +6 = -4 + 10, -6 = +4 - 10
+Step 25: +7 = -3 + 10
+Step 26: -7 = +3 - 10
+Step 27: +7 = -3 + 10, -7 = +3 - 10
+Step 28: +8 = -2 + 10
+Step 29: -8 = +2 - 10
+Step 30: +8 = -2 + 10, -8 = +2 - 10
+Step 31: +9 = -1 + 10
+Step 32: -9 = +1 - 10
+Step 33: +9 = -1 + 10, -9 = +1 - 10
+Step 34: Combo - steps 21, 24, 27, 30, 33
+Step 35: +1 = -9 + 10
+Step 36: -1 = +9 - 10
+Step 37: +1 = -9 + 10, -1 = +9 - 10
+Step 38: +2 = -8 + 10
+Step 39: -2 = +8 - 10
+Step 40: +2 = -8 + 10, -2 = +8 - 10
+Step 41: +3 = -7 + 10
+Step 42: -3 = +7 - 10
+Step 43: +3 = -7 + 10, -3 = +7 - 10
+Step 44: +4 = -6 + 10
+Step 45: -4 = +6 - 10
+Step 46: +4 = -6 + 10, -4 = +6 - 10
+Step 47: Combo - steps 37, 40, 43, 46
+Step 48: Combo - steps 21, 24, 27, 30, 33, 37, 40, 43, 46
 
 Choose steps (e.g. 1-3, 5):
 ```

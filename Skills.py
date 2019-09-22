@@ -106,14 +106,15 @@ def __extend_no_carry_borrow(a, b):
 # Private problem generators.
 # ============================================================
 
-def __generate_simple_addition_subtraction(allow_upper_bead):
+def __generate_simple_addition_subtraction(max, allow_upper_bead):
     """
     Randomly generate a simple addition/subtraction problem.
 
+    :param max: int the maximum number generated (e.g. 9 or 99)
     :param allow_upper_bead: bool Is upper bead movement allowed?
     :return: Problem
     """
-    a = random.randint(0, 99)
+    a = random.randint(0, max)
     b = __pick_simple_addend(a, allow_upper_bead)
     c = __pick_simple_addend(a + b, allow_upper_bead)
     return Problem(a, b, c)
@@ -377,10 +378,14 @@ def __generate_minus9_eq_plus1_minus10():
 # Public skills to be accessed by the Steps module.
 # ============================================================
 
+single_digit_addition_or_subtraction = Skill("Single digit addition or subtraction",
+                                       lambda: __generate_simple_addition_subtraction(9, False))
+single_digit_addition_or_subtraction_allow_upper_bead = Skill("Single digit addition or subtraction (allow upper bead)",
+                                                        lambda: __generate_simple_addition_subtraction(9, True))
 simple_addition_or_subtraction = Skill("Simple addition or subtraction",
-                                       lambda: __generate_simple_addition_subtraction(False))
+                                       lambda: __generate_simple_addition_subtraction(99, False))
 simple_addition_or_subtraction_allow_upper_bead = Skill("Simple addition or subtraction (allow upper bead)",
-                                                        lambda: __generate_simple_addition_subtraction(True))
+                                                        lambda: __generate_simple_addition_subtraction(99, True))
 plus1_eq_minus4_plus5 = Skill("+1 = -4 + 5", __generate_plus1_eq_minus4_plus5)
 minus1_eq_plus4_minus5 = Skill("-1 = +4 - 5", __generate_minus1_eq_plus4_minus5)
 plus2_eq_minus3_plus5 = Skill("+2 = -3 + 5", __generate_plus2_eq_minus3_plus5)

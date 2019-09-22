@@ -3,6 +3,8 @@ from Core import Step
 
 
 steps = [
+    Step(si.single_digit_addition_or_subtraction),
+    Step(si.single_digit_addition_or_subtraction_allow_upper_bead),
     Step(si.simple_addition_or_subtraction),
     Step(si.simple_addition_or_subtraction_allow_upper_bead),
     Step(si.plus1_eq_minus4_plus5),
@@ -24,7 +26,7 @@ steps = [
          si.plus3_eq_minus2_plus5,
          si.minus3_eq_plus2_minus5,
          si.plus4_eq_minus1_plus5,
-         si.minus4_eq_plus1_minus5).with_description('Combo - steps 5, 8, 11, 14'),
+         si.minus4_eq_plus1_minus5).with_description('Combo - steps 7, 10, 13, 16'),
     Step(si.no_carry_borrow),
     Step(si.plus5_eq_minus5_plus10),
     Step(si.minus5_eq_plus5_minus10),
@@ -50,7 +52,7 @@ steps = [
          si.plus8_eq_minus2_plus10,
          si.minus8_eq_plus2_minus10,
          si.plus9_eq_minus1_plus10,
-         si.minus9_eq_plus1_minus10).with_description("Combo - steps 19, 22, 25, 28, 31"),
+         si.minus9_eq_plus1_minus10).with_description("Combo - steps 21, 24, 27, 30, 33"),
     Step(si.plus1_eq_minus9_plus10),
     Step(si.minus1_eq_plus9_minus10),
     Step(si.plus1_eq_minus9_plus10, si.minus1_eq_plus9_minus10),
@@ -70,7 +72,7 @@ steps = [
          si.plus3_eq_minus7_plus10,
          si.minus3_eq_plus7_minus10,
          si.plus4_eq_minus6_plus10,
-         si.minus4_eq_plus6_minus10).with_description("Combo - steps 35, 38, 41, 44"),
+         si.minus4_eq_plus6_minus10).with_description("Combo - steps 37, 40, 43, 46"),
     Step(si.plus1_eq_minus9_plus10,
          si.minus1_eq_plus9_minus10,
          si.plus2_eq_minus8_plus10,
@@ -88,5 +90,5 @@ steps = [
          si.plus8_eq_minus2_plus10,
          si.minus8_eq_plus2_minus10,
          si.plus9_eq_minus1_plus10,
-         si.minus9_eq_plus1_minus10).with_description("Combo - steps 19, 22, 25, 28, 31, 35, 38, 41, 44")
+         si.minus9_eq_plus1_minus10).with_description("Combo - steps 21, 24, 27, 30, 33, 37, 40, 43, 46")
 ]
