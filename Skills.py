@@ -378,10 +378,10 @@ def __generate_minus9_eq_plus1_minus10():
 # Public skills to be accessed by the Steps module.
 # ============================================================
 
-single_digit_addition_or_subtraction = Skill("Single digit addition or subtraction",
-                                       lambda: __generate_simple_addition_subtraction(9, False))
-single_digit_addition_or_subtraction_allow_upper_bead = Skill("Single digit addition or subtraction (allow upper bead)",
-                                                        lambda: __generate_simple_addition_subtraction(9, True))
+one_digit_addition_or_subtraction = Skill("One-digit addition or subtraction",
+                                          lambda: __generate_simple_addition_subtraction(9, False))
+one_digit_addition_or_subtraction_allow_upper_bead = Skill("One-digit addition or subtraction (allow upper bead)",
+                                                           lambda: __generate_simple_addition_subtraction(9, True))
 simple_addition_or_subtraction = Skill("Simple addition or subtraction",
                                        lambda: __generate_simple_addition_subtraction(99, False))
 simple_addition_or_subtraction_allow_upper_bead = Skill("Simple addition or subtraction (allow upper bead)",

@@ -3,8 +3,8 @@ from Core import Step
 
 
 steps = [
-    Step(si.single_digit_addition_or_subtraction),
-    Step(si.single_digit_addition_or_subtraction_allow_upper_bead),
+    Step(si.one_digit_addition_or_subtraction),
+    Step(si.one_digit_addition_or_subtraction_allow_upper_bead),
     Step(si.simple_addition_or_subtraction),
     Step(si.simple_addition_or_subtraction_allow_upper_bead),
     Step(si.plus1_eq_minus4_plus5),
