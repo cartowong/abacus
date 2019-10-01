@@ -2,7 +2,7 @@ import Skills as si
 from Core import Step
 
 
-steps = [
+steps: [Step] = [
     Step(si.one_digit_addition_or_subtraction),
     Step(si.one_digit_addition_or_subtraction_allow_upper_bead),
     Step(si.simple_addition_or_subtraction),
