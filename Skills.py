@@ -1,6 +1,7 @@
 import random
 
 from Core import Problem, Skill
+from typing import List, Tuple
 
 
 # ============================================================
@@ -19,13 +20,52 @@ def __randbool(p: float) -> bool:
     """
     Bernoulli random variable.
 
-    :param p: float the probability of True
-    :return: bool
+    :param p: the probability of True
+    :return: a sample of Bernoulli random variable
     """
     return random.random() < p
 
 
-def __pick_simple_addend(x: int, allow_upper_bead: bool) -> Problem:
+def __randpath(a: int, forward: bool) -> Tuple[int]:
+    """
+    Given an integer a in {0, 1, ..., 9}, find a random path of integers from a to 9 (forward) or
+    0 (backward) so that in each step exactly one (lower or upper) bead is added (if forward) or
+    is subtracted (if backward).
+
+    :param a: the given integer a
+    :param forward: Is forward?
+    :return: a sample of random path
+    """
+    path: List[int] = [a]
+    if forward:
+        while path[len(path)-1] != 9:
+            x = path[len(path)-1]
+            x1 = x % 5
+            x2 = 1 if x >= 5 else 0
+            two_ways = x1 < 4 and x2 == 0
+            if x1 == 4 or (two_ways and __randbool(0.2)):
+                path.append(x + 5)
+            else:
+                next = x1 + 1 + 5 * x2
+                path.append(next)
+
+        return tuple(path)
+    else:
+        while path[len(path)-1] != 0:
+            x = path[len(path)-1]
+            x1 = x % 5
+            x2 = 1 if x >= 5 else 0
+            two_ways = x1 > 0 and x2 == 1
+            if x1 == 0 or (two_ways and __randbool(0.2)):
+                path.append(x - 5)
+            else:
+                next = x1 - 1 + 5 * x2
+                path.append(next)
+
+        return tuple(path)
+
+
+def __pick_simple_addend(x: int, allow_upper_bead: bool) -> int:
     """
     Given an integer x, randomly choose a simple, non-zero addend y between -9 and 9. By simple,
     we mean the addition or subtraction only involves moving lower beads, and perhaps also moving
@@ -34,7 +74,7 @@ def __pick_simple_addend(x: int, allow_upper_bead: bool) -> Problem:
 
     :param x: int the given integer
     :param allow_upper_bead: bool allow upper bead movement (in the opposite direction)?
-    :return: Problem
+    :return:
     """
     r1 = x % 5
     r2 = x % 10
@@ -105,6 +145,34 @@ def __extend_no_carry_borrow(a: int, b: int) -> Problem:
 # ============================================================
 # Private problem generators.
 # ============================================================
+
+def __generate_one_digit_simple_addition() -> Problem:
+    """
+    Randomly generate a 1-digit simple addition problem.
+    :return:
+    """
+    a = random.choice([0, 1, 5])
+    path = __randpath(a, True)
+    index1 = random.randint(1, 2)
+    index2 = index1 + random.randint(1, 2)
+    b = path[index1] - a
+    c = path[index2] - path[index1]
+    return Problem(a, b, c)
+
+
+def __generate_one_digit_simple_subtraction() -> Problem:
+    """
+    Randomly generate a 1-digit simple subtraction problem.
+    :return:
+    """
+    a = random.choice([4, 8, 9])
+    path = __randpath(a, False)
+    index1 = random.randint(1, 2)
+    index2 = index1 + random.randint(1, 2)
+    b = path[index1] - a
+    c = path[index2] - path[index1]
+    return Problem(a, b, c)
+
 
 def __generate_simple_addition_subtraction(max_value, allow_upper_bead) -> Problem:
     """
@@ -377,6 +445,9 @@ def __generate_minus9_eq_plus1_minus10() -> Problem:
 # ============================================================
 # Public skills to be accessed by the Steps module.
 # ============================================================
+
+one_digit_simple_addition = Skill("One-digit simple addition", __generate_one_digit_simple_addition)
+one_digit_simple_subtraction = Skill("One-digit simple subtraction", __generate_one_digit_simple_subtraction)
 
 one_digit_addition_or_subtraction = Skill("One-digit simple addition or subtraction",
                                           lambda: __generate_simple_addition_subtraction(9, False))
