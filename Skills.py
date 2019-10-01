@@ -106,15 +106,15 @@ def __extend_no_carry_borrow(a, b):
 # Private problem generators.
 # ============================================================
 
-def __generate_simple_addition_subtraction(max, allow_upper_bead):
+def __generate_simple_addition_subtraction(max_value, allow_upper_bead):
     """
     Randomly generate a simple addition/subtraction problem.
 
-    :param max: int the maximum number generated (e.g. 9 or 99)
+    :param max_value: int the maximum number generated (e.g. 9 or 99)
     :param allow_upper_bead: bool Is upper bead movement allowed?
     :return: Problem
     """
-    a = random.randint(0, max)
+    a = random.randint(0, max_value)
     b = __pick_simple_addend(a, allow_upper_bead)
     c = __pick_simple_addend(a + b, allow_upper_bead)
     return Problem(a, b, c)
