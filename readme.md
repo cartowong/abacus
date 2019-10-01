@@ -22,8 +22,8 @@ Clone this repository, cd into the repository root directory, and then run the s
 see the complete list of steps and will be asked to enter the steps you want to practice. You may enter a range (e.g. 1-3), a number (e.g. 5), or a mix of both separated by commas (e.g. 1-3, 5).
 
 ```buildoutcfg
-Step 1: One-digit addition or subtraction
-Step 2: One-digit addition or subtraction (allow upper bead)
+Step 1: One-digit simple addition or subtraction
+Step 2: One-digit simple addition or subtraction (allow upper bead)
 Step 3: Simple addition or subtraction
 Step 4: Simple addition or subtraction (allow upper bead)
 Step 5: +1 = -4 + 5
