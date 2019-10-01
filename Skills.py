@@ -15,7 +15,7 @@ __digits_no05 = (1, 2, 3, 4, 6, 7, 8, 9)
 # Private utility functions.
 # ============================================================
 
-def __randbool(p):
+def __randbool(p: float) -> bool:
     """
     Bernoulli random variable.
 
@@ -25,7 +25,7 @@ def __randbool(p):
     return random.random() < p
 
 
-def __pick_simple_addend(x, allow_upper_bead):
+def __pick_simple_addend(x: int, allow_upper_bead: bool) -> Problem:
     """
     Given an integer x, randomly choose a simple, non-zero addend y between -9 and 9. By simple,
     we mean the addition or subtraction only involves moving lower beads, and perhaps also moving
@@ -52,7 +52,7 @@ def __pick_simple_addend(x, allow_upper_bead):
     return y
 
 
-def __pick_no_carry_borrow_addend(x):
+def __pick_no_carry_borrow_addend(x: int) -> int:
     """
     Given an integer x, randomly choose a non-zero addend y between -9 and 9 such that the addition
     x + y does not involve carry or borrow. In other words, the integers x and x + y have the same
@@ -66,7 +66,7 @@ def __pick_no_carry_borrow_addend(x):
     return a - r
 
 
-def __extend_simple(a, b):
+def __extend_simple(a: int, b: int) -> Problem:
     """
     Given a pair of integers (a, b), randomly generate a problem of the form x + a + b or a + b + x by
     prepending or appending a simple addition or subtraction.
@@ -84,7 +84,7 @@ def __extend_simple(a, b):
         return Problem(a, b, v)
 
 
-def __extend_no_carry_borrow(a, b):
+def __extend_no_carry_borrow(a: int, b: int) -> Problem:
     """
     Given a pair of integers (a, b), randomly generate a problem of the form x + a + b or a + b + x by
     prepending or appending an addition or subtraction which does not involve carry or borrow.
@@ -106,7 +106,7 @@ def __extend_no_carry_borrow(a, b):
 # Private problem generators.
 # ============================================================
 
-def __generate_simple_addition_subtraction(max_value, allow_upper_bead):
+def __generate_simple_addition_subtraction(max_value, allow_upper_bead) -> Problem:
     """
     Randomly generate a simple addition/subtraction problem.
 
@@ -123,7 +123,7 @@ def __generate_simple_addition_subtraction(max_value, allow_upper_bead):
 # Generate problem for a skill of the form +a = -b + 5 or
 # -a = +b - 5, where a + b = 5.
 
-def __generate_plus1_eq_minus4_plus5():
+def __generate_plus1_eq_minus4_plus5() -> Problem:
     """
     Generate a problem for the skill +1 = -4 + 5.
     :return: Problem
@@ -132,7 +132,7 @@ def __generate_plus1_eq_minus4_plus5():
     return __extend_simple(a, 1)
 
 
-def __generate_minus1_eq_plus4_minus5():
+def __generate_minus1_eq_plus4_minus5() -> Problem:
     """
     Generate a problem for the skill -1 = +4 - 5.
     :return: Problem
@@ -141,7 +141,7 @@ def __generate_minus1_eq_plus4_minus5():
     return __extend_simple(a, -1)
 
 
-def __generate_plus2_eq_minus3_plus5():
+def __generate_plus2_eq_minus3_plus5() -> Problem:
     """
     Generate a problem for the skill +2 = -3 + 5.
     :return: Problem
@@ -150,7 +150,7 @@ def __generate_plus2_eq_minus3_plus5():
     return __extend_simple(a, 2)
 
 
-def __generate_minus2_eq_plus3_minus5():
+def __generate_minus2_eq_plus3_minus5() -> Problem:
     """
     Generate a problem for the skill -2 = +3 - 5.
     :return: Problem
@@ -159,7 +159,7 @@ def __generate_minus2_eq_plus3_minus5():
     return __extend_simple(a, -2)
 
 
-def __generate_plus3_eq_minus2_plus5():
+def __generate_plus3_eq_minus2_plus5() -> Problem:
     """
     Generate a problem for the skill +3 = -2 + 5.
     :return: Problem
@@ -168,7 +168,7 @@ def __generate_plus3_eq_minus2_plus5():
     return __extend_simple(a, 3)
 
 
-def __generate_minus3_eq_plus2_minus5():
+def __generate_minus3_eq_plus2_minus5() -> Problem:
     """
     Generate a problem for the skill -3 = +2 - 5.
     :return: Problem
@@ -177,7 +177,7 @@ def __generate_minus3_eq_plus2_minus5():
     return __extend_simple(a, -3)
 
 
-def __generate_plus4_eq_minus1_plus5():
+def __generate_plus4_eq_minus1_plus5() -> Problem:
     """
     Generate a problem for the skill +4 = -1 + 5.
     :return: Problem
@@ -186,7 +186,7 @@ def __generate_plus4_eq_minus1_plus5():
     return __extend_simple(a, 4)
 
 
-def __generate_minus4_eq_plus1_minus5():
+def __generate_minus4_eq_plus1_minus5() -> Problem:
     """
     Generate a problem for the skill -4 = +1 - 5.
     :return: Problem
@@ -197,7 +197,7 @@ def __generate_minus4_eq_plus1_minus5():
 
 # ============================================================
 
-def __generate_no_carry_borrow():
+def __generate_no_carry_borrow() -> Problem:
     """
     Generate a problem which does not involve carry or brrow.
     :return: Problem
@@ -212,7 +212,7 @@ def __generate_no_carry_borrow():
 # ============================================================
 
 
-def __generate_plus1_eq_minus9_plus10():
+def __generate_plus1_eq_minus9_plus10() -> Problem:
     """
     Generate a problem for the skill +1 = -9 + 10.
     :return: Problem
@@ -221,7 +221,7 @@ def __generate_plus1_eq_minus9_plus10():
     return __extend_no_carry_borrow(a, 1)
 
 
-def __generate_minus1_eq_plus9_minus10():
+def __generate_minus1_eq_plus9_minus10() -> Problem:
     """
     Generate a problem for the skill -1 = +9 - 10.
     :return: Problem
@@ -230,7 +230,7 @@ def __generate_minus1_eq_plus9_minus10():
     return __extend_no_carry_borrow(a, -1)
 
 
-def __generate_plus2_eq_minus8_plus10():
+def __generate_plus2_eq_minus8_plus10() -> Problem:
     """
     Generate a problem for the skill +2 = -8 + 10.
     :return: Problem
@@ -239,7 +239,7 @@ def __generate_plus2_eq_minus8_plus10():
     return __extend_no_carry_borrow(a, 2)
 
 
-def __generate_minus2_eq_plus8_minus10():
+def __generate_minus2_eq_plus8_minus10() -> Problem:
     """
     Generate a problem for the skill -2 = +8 - 10.
     :return: Problem
@@ -248,7 +248,7 @@ def __generate_minus2_eq_plus8_minus10():
     return __extend_no_carry_borrow(a, -2)
 
 
-def __generate_plus3_eq_minus7_plus10():
+def __generate_plus3_eq_minus7_plus10() -> Problem:
     """
     Generate a problem for the skill +3 = -7 + 10.
     :return: Problem
@@ -257,7 +257,7 @@ def __generate_plus3_eq_minus7_plus10():
     return __extend_no_carry_borrow(a, 3)
 
 
-def __generate_minus3_eq_plus7_minus10():
+def __generate_minus3_eq_plus7_minus10() -> Problem:
     """
     Generate a problem for the skill -3 = +7 - 10.
     :return: Problem
@@ -266,7 +266,7 @@ def __generate_minus3_eq_plus7_minus10():
     return __extend_no_carry_borrow(a, -3)
 
 
-def __generate_plus4_eq_minus6_plus10():
+def __generate_plus4_eq_minus6_plus10() -> Problem:
     """
     Generate a problem for the skill +4 = -6 + 10.
     :return: Problem
@@ -275,7 +275,7 @@ def __generate_plus4_eq_minus6_plus10():
     return __extend_no_carry_borrow(a, 4)
 
 
-def __generate_minus4_eq_plus6_minus10():
+def __generate_minus4_eq_plus6_minus10() -> Problem:
     """
     Generate a problem for the skill -4 = +6 - 10.
     :return: Problem
@@ -284,7 +284,7 @@ def __generate_minus4_eq_plus6_minus10():
     return __extend_no_carry_borrow(a, -4)
 
 
-def __generate_plus5_eq_minus5_plus10():
+def __generate_plus5_eq_minus5_plus10() -> Problem:
     """
     Generate a problem for the skill +5 = -5 + 10.
     :return: Problem
@@ -293,7 +293,7 @@ def __generate_plus5_eq_minus5_plus10():
     return __extend_no_carry_borrow(a, 5)
 
 
-def __generate_minus5_eq_plus5_minus10():
+def __generate_minus5_eq_plus5_minus10() -> Problem:
     """
     Generate a problem for the skill -5 = +5 - 10.
     :return: Problem
@@ -302,7 +302,7 @@ def __generate_minus5_eq_plus5_minus10():
     return __extend_no_carry_borrow(a, -5)
 
 
-def __generate_plus6_eq_minus4_plus10():
+def __generate_plus6_eq_minus4_plus10() -> Problem:
     """
     Generate a problem for the skill +6 = -4 + 10.
     :return: Problem
@@ -311,7 +311,7 @@ def __generate_plus6_eq_minus4_plus10():
     return __extend_no_carry_borrow(a, 6)
 
 
-def __generate_minus6_eq_plus4_minus10():
+def __generate_minus6_eq_plus4_minus10() -> Problem:
     """
     Generate a problem for the skill -6 = +4 - 10.
     :return: Problem
@@ -320,7 +320,7 @@ def __generate_minus6_eq_plus4_minus10():
     return __extend_no_carry_borrow(a, -6)
 
 
-def __generate_plus7_eq_minus3_plus10():
+def __generate_plus7_eq_minus3_plus10() -> Problem:
     """
     Generate a problem for the skill +7 = -3 + 10.
     :return: Problem
@@ -329,7 +329,7 @@ def __generate_plus7_eq_minus3_plus10():
     return __extend_no_carry_borrow(a, 7)
 
 
-def __generate_minus7_eq_plus3_minus10():
+def __generate_minus7_eq_plus3_minus10() -> Problem:
     """
     Generate a problem for the skill -7 = +3 - 10.
     :return: Problem
@@ -338,7 +338,7 @@ def __generate_minus7_eq_plus3_minus10():
     return __extend_no_carry_borrow(a, -7)
 
 
-def __generate_plus8_eq_minus2_plus10():
+def __generate_plus8_eq_minus2_plus10() -> Problem:
     """
     Generate a problem for the skill +8 = -2 + 10.
     :return: Problem
@@ -347,7 +347,7 @@ def __generate_plus8_eq_minus2_plus10():
     return __extend_no_carry_borrow(a, 8)
 
 
-def __generate_minus8_eq_plus2_minus10():
+def __generate_minus8_eq_plus2_minus10() -> Problem:
     """
     Generate a problem for the skill -8 = +2 - 10.
     :return: Problem
@@ -356,7 +356,7 @@ def __generate_minus8_eq_plus2_minus10():
     return __extend_no_carry_borrow(a, -8)
 
 
-def __generate_plus9_eq_minus1_plus10():
+def __generate_plus9_eq_minus1_plus10() -> Problem:
     """
     Generate a problem for the skill +9 = -1 + 10.
     :return: Problem
@@ -365,7 +365,7 @@ def __generate_plus9_eq_minus1_plus10():
     return __extend_no_carry_borrow(a, 9)
 
 
-def __generate_minus9_eq_plus1_minus10():
+def __generate_minus9_eq_plus1_minus10() -> Problem:
     """
     Generate a problem for the skill -9 = +1 - 10.
     :return: Problem
