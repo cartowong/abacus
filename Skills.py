@@ -72,8 +72,8 @@ def __pick_simple_addend(x: int, allow_upper_bead: bool) -> int:
     one upper bead in the same rod in the opposite direction. For example, a simple "+7" involves
     moving two lower beads up and one upper bead down.
 
-    :param x: int the given integer
-    :param allow_upper_bead: bool allow upper bead movement (in the opposite direction)?
+    :param x: the given integer
+    :param allow_upper_bead: allow upper bead movement (in the opposite direction)?
     :return:
     """
     r1 = x % 5
@@ -98,7 +98,7 @@ def __pick_no_carry_borrow_addend(x: int) -> int:
     x + y does not involve carry or borrow. In other words, the integers x and x + y have the same
     quotient mod 10.
 
-    :param x: int the given integer
+    :param x: the given integer
     :return:
     """
     r = x % 10
@@ -111,8 +111,8 @@ def __extend_simple(a: int, b: int) -> Problem:
     Given a pair of integers (a, b), randomly generate a problem of the form x + a + b or a + b + x by
     prepending or appending a simple addition or subtraction.
 
-    :param a: int the first integer
-    :param b: int the second integer
+    :param a: the first integer
+    :param b: the second integer
     :return: Problem
     """
     prepend = __randbool(1 / 2)
@@ -129,8 +129,8 @@ def __extend_no_carry_borrow(a: int, b: int) -> Problem:
     Given a pair of integers (a, b), randomly generate a problem of the form x + a + b or a + b + x by
     prepending or appending an addition or subtraction which does not involve carry or borrow.
 
-    :param a: int the first integer
-    :param b: int the second integer
+    :param a: the first integer
+    :param b: the second integer
     :return: Problem
     """
     prepend = __randbool(1 / 2)
