@@ -3,7 +3,6 @@ import random
 from Core import Problem, Skill
 from typing import List, Tuple
 
-
 # ============================================================
 # Private constants.
 # ============================================================
@@ -38,29 +37,27 @@ def __randpath(a: int, forward: bool) -> Tuple[int]:
     """
     path: List[int] = [a]
     if forward:
-        while path[len(path)-1] != 9:
-            x = path[len(path)-1]
+        while path[len(path) - 1] != 9:
+            x = path[len(path) - 1]
             x1 = x % 5
             x2 = 1 if x >= 5 else 0
             two_ways = x1 < 4 and x2 == 0
             if x1 == 4 or (two_ways and __randbool(0.2)):
                 path.append(x + 5)
             else:
-                next = x1 + 1 + 5 * x2
-                path.append(next)
+                path.append(x1 + 1 + 5 * x2)
 
         return tuple(path)
     else:
-        while path[len(path)-1] != 0:
-            x = path[len(path)-1]
+        while path[len(path) - 1] != 0:
+            x = path[len(path) - 1]
             x1 = x % 5
             x2 = 1 if x >= 5 else 0
             two_ways = x1 > 0 and x2 == 1
             if x1 == 0 or (two_ways and __randbool(0.2)):
                 path.append(x - 5)
             else:
-                next = x1 - 1 + 5 * x2
-                path.append(next)
+                path.append(x1 - 1 + 5 * x2)
 
         return tuple(path)
 
@@ -146,31 +143,19 @@ def __extend_no_carry_borrow(a: int, b: int) -> Problem:
 # Private problem generators.
 # ============================================================
 
-def __generate_one_digit_simple_addition() -> Problem:
+def __generate_one_digit_simple_addition_or_subtraction(is_addition: bool) -> Problem:
     """
-    Randomly generate a 1-digit simple addition problem.
+    Randomly generate a 1-digit simple problem using only addition or only subtraction.
+    :param is_addition: use addition?
     :return:
     """
-    a = random.choice([0, 1, 5])
-    path = __randpath(a, True)
-    index1 = random.randint(1, 2)
-    index2 = index1 + random.randint(1, 2)
-    b = path[index1] - a
-    c = path[index2] - path[index1]
-    return Problem(a, b, c)
-
-
-def __generate_one_digit_simple_subtraction() -> Problem:
-    """
-    Randomly generate a 1-digit simple subtraction problem.
-    :return:
-    """
-    a = random.choice([4, 8, 9])
-    path = __randpath(a, False)
-    index1 = random.randint(1, 2)
-    index2 = index1 + random.randint(1, 2)
-    b = path[index1] - a
-    c = path[index2] - path[index1]
+    start = 0 if is_addition else 9
+    path = __randpath(start, is_addition)
+    indices = random.sample(range(0, len(path)), k=3)
+    indices.sort()
+    a = path[indices[0]]
+    b = path[indices[1]] - a
+    c = path[indices[2]] - path[indices[1]]
     return Problem(a, b, c)
 
 
@@ -446,13 +431,16 @@ def __generate_minus9_eq_plus1_minus10() -> Problem:
 # Public skills to be accessed by the Steps module.
 # ============================================================
 
-one_digit_simple_addition = Skill("One-digit simple addition", __generate_one_digit_simple_addition)
-one_digit_simple_subtraction = Skill("One-digit simple subtraction", __generate_one_digit_simple_subtraction)
+one_digit_simple_addition = Skill("One-digit simple addition",
+                                  lambda: __generate_one_digit_simple_addition_or_subtraction(True))
+one_digit_simple_subtraction = Skill("One-digit simple subtraction",
+                                     lambda: __generate_one_digit_simple_addition_or_subtraction(False))
 
 one_digit_addition_or_subtraction = Skill("One-digit simple addition or subtraction",
                                           lambda: __generate_simple_addition_subtraction(9, False))
-one_digit_addition_or_subtraction_allow_upper_bead = Skill("One-digit simple addition or subtraction (allow upper bead)",
-                                                           lambda: __generate_simple_addition_subtraction(9, True))
+one_digit_addition_or_subtraction_allow_upper_bead = Skill(
+    "One-digit simple addition or subtraction (allow upper bead)",
+    lambda: __generate_simple_addition_subtraction(9, True))
 simple_addition_or_subtraction = Skill("Simple addition or subtraction",
                                        lambda: __generate_simple_addition_subtraction(99, False))
 simple_addition_or_subtraction_allow_upper_bead = Skill("Simple addition or subtraction (allow upper bead)",
