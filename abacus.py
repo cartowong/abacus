@@ -1,6 +1,9 @@
 import os
 import random
 
+from typing import List
+
+from Core import Problem, Step
 from Steps import steps
 
 
@@ -87,12 +90,27 @@ def response(steps, choices):
     num_problems = 15
     for c in choices:
         step = steps[c-1]
-        problems = [step.sample() for j in range(num_problems)]
+        problems = generate_problems(step, num_problems)
         output_problems(
             problems,
             step.description(),
             os.path.join("html", "problemsTemplate.html"),
             os.path.join("output", f"{c:02d}.html"))
+
+
+def generate_problems(step: Step, n: int) -> List[Problem]:
+    """
+    Generate n distinct problems from the given step.
+
+    :param step: the given step
+    :param n: the number of problems to generate
+    :return: the chosen problems
+    """
+    problem_set = set()
+    while len(problem_set) < n:
+        problem_set.add(step.sample())
+
+    return list(problem_set)
 
 
 def output_problems(problems, step_description, template_path, output_path):
