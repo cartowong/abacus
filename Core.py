@@ -33,6 +33,15 @@ class Problem:
         """
         return self.__c
 
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Problem):
+            return NotImplemented
+
+        return self.__a == other.__a and self.__b == other.__b and self.__c == other.__c
+
+    def __hash__(self):
+        return hash((self.__a, self.__b, self.__c))
+
 
 class Skill:
     """
