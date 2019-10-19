@@ -31,14 +31,14 @@ Choose steps (e.g. 1-3, 5):
 
 After you enter the steps, some HTML files will be generated in the output directory. You will find the file
 `output/steps.html` which contains the complete list of steps for your reference. For each of the chosen step,
-one HTML file will be generated. For example, if you entered "3 - 5, 12", then you will find the following output files.
+one HTML file will be generated. For example, if you entered "3 - 5, 14", then you will find the following output files.
 * output/steps.html
 * output/03.html
 * output/04.html
 * output/05.html
-* output/12.html
+* output/14.html
 
-Here is a screenshot for `output/12.html`. (Since the problems are randomly generated, you will likely get a
+Here is a screenshot for `output/14.html`. (Since the problems are randomly generated, you will likely get a
 different set of problems if you run `abacus.py`.)
 
 ![screenshot](./img/problems.png)
