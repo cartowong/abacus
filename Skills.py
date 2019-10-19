@@ -143,10 +143,11 @@ def __extend_no_carry_borrow(a: int, b: int) -> Problem:
 # Private problem generators.
 # ============================================================
 
-def __generate_one_digit_simple_addition_or_subtraction(is_addition: bool) -> Problem:
+def __generate_simple_addition_or_subtraction(is_addition: bool, is_one_digit: bool) -> Problem:
     """
     Randomly generate a 1-digit simple problem using only addition or only subtraction.
     :param is_addition: use addition?
+    :param is_one_digit: if yes, all numbers are one-digit numbers.
     :return:
     """
     start = 0 if is_addition else 9
@@ -156,6 +157,10 @@ def __generate_one_digit_simple_addition_or_subtraction(is_addition: bool) -> Pr
     a = path[indices[0]]
     b = path[indices[1]] - a
     c = path[indices[2]] - path[indices[1]]
+
+    if not is_one_digit:
+        s = 10 * random.randint(0, 9)
+        a = a + s
     return Problem(a, b, c)
 
 
@@ -431,20 +436,32 @@ def __generate_minus9_eq_plus1_minus10() -> Problem:
 # Public skills to be accessed by the Steps module.
 # ============================================================
 
-one_digit_simple_addition = Skill("One-digit simple addition",
-                                  lambda: __generate_one_digit_simple_addition_or_subtraction(True))
-one_digit_simple_subtraction = Skill("One-digit simple subtraction",
-                                     lambda: __generate_one_digit_simple_addition_or_subtraction(False))
-
-one_digit_addition_or_subtraction = Skill("One-digit simple addition or subtraction",
-                                          lambda: __generate_simple_addition_subtraction(9, False))
+one_digit_simple_addition = Skill(
+    "One-digit simple addition",
+    lambda: __generate_simple_addition_or_subtraction(True, True))
+one_digit_simple_subtraction = Skill(
+    "One-digit simple subtraction",
+    lambda: __generate_simple_addition_or_subtraction(False, True))
+one_digit_addition_or_subtraction_lower_bead_only = Skill(
+    "One-digit simple addition or subtraction (lower bead only)",
+    lambda: __generate_simple_addition_subtraction(9, False))
 one_digit_addition_or_subtraction_allow_upper_bead = Skill(
     "One-digit simple addition or subtraction (allow upper bead)",
     lambda: __generate_simple_addition_subtraction(9, True))
-simple_addition_or_subtraction = Skill("Simple addition or subtraction",
-                                       lambda: __generate_simple_addition_subtraction(99, False))
-simple_addition_or_subtraction_allow_upper_bead = Skill("Simple addition or subtraction (allow upper bead)",
-                                                        lambda: __generate_simple_addition_subtraction(99, True))
+
+simple_addition = Skill(
+    "Simple addition",
+    lambda: __generate_simple_addition_or_subtraction(True, False))
+simple_subtraction = Skill(
+    "Simple subtraction",
+    lambda: __generate_simple_addition_or_subtraction(False, False))
+simple_addition_or_subtraction_lower_bead_only = Skill(
+    "Simple addition or subtraction (lower bead only)",
+    lambda: __generate_simple_addition_subtraction(99, False))
+simple_addition_or_subtraction_allow_upper_bead = Skill(
+    "Simple addition or subtraction (allow upper bead)",
+    lambda: __generate_simple_addition_subtraction(99, True))
+
 plus1_eq_minus4_plus5 = Skill("+1 = -4 + 5", __generate_plus1_eq_minus4_plus5)
 minus1_eq_plus4_minus5 = Skill("-1 = +4 - 5", __generate_minus1_eq_plus4_minus5)
 plus2_eq_minus3_plus5 = Skill("+2 = -3 + 5", __generate_plus2_eq_minus3_plus5)

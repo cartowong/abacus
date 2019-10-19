@@ -5,9 +5,11 @@ from Core import Step
 steps: [Step] = [
     Step(si.one_digit_simple_addition),
     Step(si.one_digit_simple_subtraction),
-    Step(si.one_digit_addition_or_subtraction),
+    Step(si.one_digit_addition_or_subtraction_lower_bead_only),
     Step(si.one_digit_addition_or_subtraction_allow_upper_bead),
-    Step(si.simple_addition_or_subtraction),
+    Step(si.simple_addition),
+    Step(si.simple_subtraction),
+    Step(si.simple_addition_or_subtraction_lower_bead_only),
     Step(si.simple_addition_or_subtraction_allow_upper_bead),
     Step(si.plus1_eq_minus4_plus5),
     Step(si.minus1_eq_plus4_minus5),
@@ -28,7 +30,7 @@ steps: [Step] = [
          si.plus3_eq_minus2_plus5,
          si.minus3_eq_plus2_minus5,
          si.plus4_eq_minus1_plus5,
-         si.minus4_eq_plus1_minus5).with_description('Combo - steps 9, 12, 15, 18'),
+         si.minus4_eq_plus1_minus5).with_description('Combo - steps 11, 14, 17, 20'),
     Step(si.no_carry_borrow),
     Step(si.plus5_eq_minus5_plus10),
     Step(si.minus5_eq_plus5_minus10),
@@ -54,7 +56,7 @@ steps: [Step] = [
          si.plus8_eq_minus2_plus10,
          si.minus8_eq_plus2_minus10,
          si.plus9_eq_minus1_plus10,
-         si.minus9_eq_plus1_minus10).with_description("Combo - steps 23, 26, 29, 32, 35"),
+         si.minus9_eq_plus1_minus10).with_description("Combo - steps 25, 28, 31, 34, 37"),
     Step(si.plus1_eq_minus9_plus10),
     Step(si.minus1_eq_plus9_minus10),
     Step(si.plus1_eq_minus9_plus10, si.minus1_eq_plus9_minus10),
@@ -74,7 +76,7 @@ steps: [Step] = [
          si.plus3_eq_minus7_plus10,
          si.minus3_eq_plus7_minus10,
          si.plus4_eq_minus6_plus10,
-         si.minus4_eq_plus6_minus10).with_description("Combo - steps 39, 42, 45, 48"),
+         si.minus4_eq_plus6_minus10).with_description("Combo - steps 41, 44, 47, 50"),
     Step(si.plus1_eq_minus9_plus10,
          si.minus1_eq_plus9_minus10,
          si.plus2_eq_minus8_plus10,
@@ -92,5 +94,5 @@ steps: [Step] = [
          si.plus8_eq_minus2_plus10,
          si.minus8_eq_plus2_minus10,
          si.plus9_eq_minus1_plus10,
-         si.minus9_eq_plus1_minus10).with_description("Combo - steps 23, 26, 29, 32, 35, 39, 42, 45, 48")
+         si.minus9_eq_plus1_minus10).with_description("Combo - steps 25, 28, 31, 34, 37, 41, 44, 47, 50")
 ]
