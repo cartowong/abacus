@@ -120,5 +120,8 @@ steps: [Step] = [
          si.plus8_eq_minus2_plus10,
          si.minus8_eq_plus2_minus10,
          si.plus9_eq_minus1_plus10,
-         si.minus9_eq_plus1_minus10).with_description("Combo - steps 42, 57 (+/- 1, 2, ..., 9)")
+         si.minus9_eq_plus1_minus10).with_description("Combo - steps 42, 57 (+/- 1, 2, ..., 9)"),
+    Step(si.plus6_eq_plus1_minus5_plus10),
+    Step(si.minus6_eq_minus1_plus5_minus10),
+    Step(si.plus6_eq_plus1_minus5_plus10, si.minus6_eq_minus1_plus5_minus10)
 ]
