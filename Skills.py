@@ -506,6 +506,18 @@ def __generate_minus9_eq_minus4_plus5_minus10() -> Problem:
     return __extend_no_carry_borrow(a, -9)
 
 # ============================================================
+
+def __generate_from_4x_to_5x() -> Problem:
+    """
+    Generate a problem which involves an addition a + x = b,
+    where 41 <= a <= 49, 1 <= x <= 9, and 50 <= b <= 59.
+    :return:
+    """
+    a = random.choice(range(41, 50))
+    b = random.choice(range(50, a+10))
+    return __extend_no_carry_borrow(a, b - a)
+
+# ============================================================
 # Public skills to be accessed by the Steps module.
 # ============================================================
 
@@ -574,3 +586,5 @@ plus8_eq_plus3_minus5_plus10 = Skill("+8 = +3 - 5 + 10", __generate_plus8_eq_plu
 minus8_eq_minus3_plus5_minus10 = Skill("-8 = -3 + 5 - 10", __generate_minus8_eq_minus3_plus5_minus10)
 plus9_eq_plus4_minus5_plus10 = Skill("+9 = +4 - 5 + 10", __generate_plus9_eq_plus4_minus5_plus10)
 minus9_eq_minus4_plus5_minus10 = Skill("-9 = -4 + 5 - 10", __generate_minus9_eq_minus4_plus5_minus10)
+
+from_4x_to_5x = Skill("From 4x to 5x", __generate_from_4x_to_5x)

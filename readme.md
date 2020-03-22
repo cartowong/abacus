@@ -95,6 +95,7 @@ Step 70: -9 = -4 + 5 - 10
 Step 71: +9 = +4 - 5 + 10, -9 = -4 + 5 - 10
 Step 72: Combo - steps 68, 71 (+/- 8, 9)
 Step 73: Combo - steps 61, 64, 68, 71 (+/- 6, 7, 8, 9)
+Step 74: From 4x to 5x
 
 Choose steps (e.g. 1-3, 5):
 ```

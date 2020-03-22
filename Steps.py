@@ -149,4 +149,5 @@ steps: [Step] = [
          si.minus8_eq_minus3_plus5_minus10,
          si.plus9_eq_plus4_minus5_plus10,
          si.minus9_eq_minus4_plus5_minus10).with_description("Combo - steps 61, 64, 68, 71 (+/- 6, 7, 8, 9)"),
+    Step(si.from_4x_to_5x),
 ]
