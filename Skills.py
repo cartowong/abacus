@@ -178,9 +178,6 @@ def __generate_simple_addition_subtraction(max_value, allow_upper_bead) -> Probl
     return Problem(a, b, c)
 
 
-# Generate problem for a skill of the form +a = -b + 5 or
-# -a = +b - 5, where a + b = 5.
-
 def __generate_plus1_eq_minus4_plus5() -> Problem:
     """
     Generate a problem for the skill +1 = -4 + 5.
@@ -452,6 +449,7 @@ def __generate_minus6_eq_minus1_plus5_minus10() -> Problem:
     a = 10 * random.choice(__digits_no05) + random.choice([1, 2, 3, 4])
     return __extend_no_carry_borrow(a, -6)
 
+
 def __generate_plus7_eq_plus2_minus5_plus10() -> Problem:
     """
     Generate a problem for the skill +7 = +2 - 5 + 10.
@@ -505,17 +503,52 @@ def __generate_minus9_eq_minus4_plus5_minus10() -> Problem:
     a = 10 * random.choice(__digits_no05) + random.choice([4])
     return __extend_no_carry_borrow(a, -9)
 
+
 # ============================================================
 
 def __generate_from_4x_to_5x() -> Problem:
     """
     Generate a problem which involves an addition a + x = b,
-    where 41 <= a <= 49, 1 <= x <= 9, and 50 <= b <= 59.
+    where 40 <= a <= 49, 1 <= x <= 9, and 50 <= b <= 59.
     :return:
     """
     a = random.choice(range(41, 50))
-    b = random.choice(range(50, a+10))
+    b = random.choice(range(50, a + 10))
     return __extend_no_carry_borrow(a, b - a)
+
+
+def __generate_from_5x_to_4x() -> Problem:
+    """
+    Generate a problem which involves an addition a + x = b,
+    where 50 <= a <= 59, 1 <= x <= 9, and 40 <= b <= 49.
+    :return:
+    """
+    a = random.choice(range(50, 58))
+    b = random.choice(range(a - 9, 50))
+    return __extend_no_carry_borrow(a, b - a)
+
+
+def __generate_from_9x_to_10x() -> Problem:
+    """
+    Generate a problem which involves an addition a + x = b,
+    where 90 <= a <= 99, 1 <= x <= 9, and 100 <= b <= 109.
+    :return:
+    """
+    a = random.choice(range(91, 100))
+    b = random.choice(range(100, a + 10))
+    return __extend_no_carry_borrow(a, b - a)
+
+
+def __generate_from_10x_to_9x() -> Problem:
+    """
+    Generate a problem which involves an addition a + x = b,
+    where 100 <= a <= 109, 1 <= x <= 9, and 90 <= b <= 99.
+    :return:
+    """
+    a = random.choice(range(100, 108))
+    b = random.choice(range(a - 9, 100))
+    return __extend_no_carry_borrow(a, b - a)
+
 
 # ============================================================
 # Public skills to be accessed by the Steps module.
@@ -588,3 +621,6 @@ plus9_eq_plus4_minus5_plus10 = Skill("+9 = +4 - 5 + 10", __generate_plus9_eq_plu
 minus9_eq_minus4_plus5_minus10 = Skill("-9 = -4 + 5 - 10", __generate_minus9_eq_minus4_plus5_minus10)
 
 from_4x_to_5x = Skill("From 4x to 5x", __generate_from_4x_to_5x)
+from_5x_to_4x = Skill("From 5x to 4x", __generate_from_5x_to_4x)
+from_9x_to_10x = Skill("From 9x to 10x", __generate_from_9x_to_10x)
+from_10x_to_9x = Skill("From 10x to 9x", __generate_from_10x_to_9x)
