@@ -1,5 +1,4 @@
 import os
-import random
 
 from typing import List
 
@@ -17,10 +16,13 @@ def main():
 
 
 def clear_dir(dir: str, extension: str) -> None:
-    """
-    Delete all files in the given directory with the given extension.
-    :param dir: the path of the directory
-    :param extension: type of the files to be deleted
+    """Delete all files in the given directory with the given extension.
+
+    Arguments:
+        dir {str}
+            the path of the directory
+        extension {str}
+            type of the files to be deleted
     """
     files = [f for f in os.listdir(dir) if f.endswith(extension)]
     for f in files:
@@ -28,13 +30,15 @@ def clear_dir(dir: str, extension: str) -> None:
 
 
 def parse_choices(choices_string: str) -> List[int]:
-    """
-    Parse the raw choices.
+    """Parse the raw choices.
 
     For example, the string "1 - 2, 3,5-7" is parsed into the list [1, 2, 3, 5, 6, 7].
 
-    :param choices_string: the raw choices
-    :return: the parsed choices
+    Arguments:
+        choices_string {str}
+            the raw choices
+    Returns: {list of int}
+        the parsed choices
     """
     ranges = [r.strip() for r in choices_string.split(',')]
     choices = list()
@@ -53,24 +57,30 @@ def parse_choices(choices_string: str) -> List[int]:
 
 
 def filter_choices(choices: List[int], lower: int, upper: int) -> List[int]:
-    """
-    Filter the choices.
+    """Filter the choices.
 
-    :param choices: list of integer choices
-    :param lower: inclusive lower bound
-    :param upper: inclusive upper bound
-    :return: the filtered choices with invalid (out of range) and duplicate integers removed
+    Arguments:
+        choices {list of int}
+            list of integer choices
+        lower {int}
+            inclusive lower bound
+        upper {int}
+            inclusive upper bound
+    Returns: {list of int}
+        the filtered choices with invalid (out of range) and duplicate integers removed
     """
     filtered_choices = [c for c in choices if lower <= c <= upper]
     return list(dict.fromkeys(filtered_choices))
 
 
 def response(steps: List[Step], choices: List[int]) -> None:
-    """
-    Produce a response (output) to the console.
+    """Produce a response (output) to the console.
 
-    :param steps: the list of all steps
-    :param choices: the integer choices that represent the steps from the menu
+    Arguments:
+        steps {list of Step}
+            the list of all steps
+        choices {list of int}
+            the integer choices that represent the steps from the menu
     """
     print(f"Your choice(s): {','.join([str(x) for x in choices])}\n")
 
@@ -97,12 +107,15 @@ def response(steps: List[Step], choices: List[int]) -> None:
 
 
 def generate_problems(step: Step, n: int) -> List[Problem]:
-    """
-    Generate n distinct problems from the given step.
+    """Generate n distinct problems from the given step.
 
-    :param step: the given step
-    :param n: the number of problems to generate
-    :return: the chosen problems
+    Arguments:
+        step {Step}
+            the given step
+        n {int}
+            the number of problems to generate
+    Returns: {list of Problem}
+        the chosen problems
     """
     problem_set = set()
     while len(problem_set) < n:
@@ -112,33 +125,39 @@ def generate_problems(step: Step, n: int) -> List[Problem]:
 
 
 def output_problems(problems: List[Problem], step_description: str, template_path: str, output_path: str) -> None:
-    """
-    Output the given problems to an HTML file.
+    """Output the given problems to an HTML file.
 
-    :param problems: the problems
-    :param step_description: the description of the step
-    :param template_path: path of the template file
-    :param output_path: path of the output file
-    :return: void
+    Arguments:
+        problems {list of Problem}
+            the problems
+        step_description {str}
+            the description of the step
+        template_path {str}
+            path of the template file
+        output_path {str}
+            path of the output file
     """
     with open(template_path, "r") as fin, open(output_path, "w") as fout:
         text = fin.read()
         for index, problem in enumerate(problems, start=1):
             text = text.replace("{step}", step_description)
-            text = text.replace(f"{{a{index}}}", str(problem.a()))
-            text = text.replace(f"{{b{index}}}", signed_int(problem.b()))
-            text = text.replace(f"{{c{index}}}", signed_int(problem.c()))
+            text = text.replace(f"{{a{index}}}", str(problem.a))
+            text = text.replace(f"{{b{index}}}", signed_int(problem.b))
+            text = text.replace(f"{{c{index}}}", signed_int(problem.c))
         fout.write(text)
     print(f"Output file created: {output_path}")
 
 
 def output_steps(steps: List[Step], template_path: str, output_path: str) -> None:
-    """
-    Output the full list of steps to an HTML file.
+    """Output the full list of steps to an HTML file.
 
-    :param steps: the steps
-    :param template_path: path of the template file
-    :param output_path: path of the output file
+    Arguments:
+        steps {list of Step}
+            the steps
+        template_path {str}
+            path of the template file
+        output_path {str}
+            path of the output file
     """
     with open(template_path, "r") as fin, open(output_path, "w") as fout:
         text = fin.read()
@@ -149,12 +168,15 @@ def output_steps(steps: List[Step], template_path: str, output_path: str) -> Non
 
 
 def update_readme(steps: List[Step], template_path: str, output_path: str) -> None:
-    """
-    Update the readme file.
+    """Update the readme file.
 
-    :param steps: the steps
-    :param template_path: path of the template file
-    :param output_path: path of the output file
+    Arguments:
+        steps {list of Step}
+            the steps
+        template_path {str}
+            path of the template file
+        output_path {str}
+            path of the output file
     """
     with open(template_path, "r") as fin, open(output_path, "w") as fout:
         text = fin.read()
@@ -165,10 +187,13 @@ def update_readme(steps: List[Step], template_path: str, output_path: str) -> No
 
 
 def signed_int(x: int) -> str:
-    """
-    Get the string representation of a signed integer, e.g. "+3" or "-4".
-    :param x: the given integer
-    :return: the signed integer as a string
+    """Get the string representation of a signed integer, e.g. "+3" or "-4".
+
+    Arguments:
+        x {int}
+            the given integer
+    Returns: {str}
+        the signed integer as a string
     """
     return f"+{x}" if x >= 0 else str(x)
 

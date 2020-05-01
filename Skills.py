@@ -16,24 +16,29 @@ __digits_no05 = (1, 2, 3, 4, 6, 7, 8, 9)
 # ============================================================
 
 def __randbool(p: float) -> bool:
-    """
-    Bernoulli random variable.
+    """Bernoulli random variable.
 
-    :param p: the probability of True
-    :return: a sample of Bernoulli random variable
+    Arguments:
+        p {float}
+            the probability of True
+    Returns: {bool}
+        a sample of Bernoulli random variable
     """
     return random.random() < p
 
 
 def __randpath(a: int, forward: bool) -> Tuple[int]:
-    """
-    Given an integer a in {0, 1, ..., 9}, find a random path of integers from a to 9 (forward) or
+    """Given an integer a in {0, 1, ..., 9}, find a random path of integers from a to 9 (forward) or
     0 (backward) so that in each step exactly one (lower or upper) bead is added (if forward) or
     is subtracted (if backward).
 
-    :param a: the given integer a
-    :param forward: Is forward?
-    :return: a sample of random path
+    Arguments:
+        a {int}
+            the given integer a
+        forward {bool}
+            Is forward?
+    Returns: {tuple of int}
+        a sample of random path
     """
     path: List[int] = [a]
     if forward:
@@ -63,15 +68,16 @@ def __randpath(a: int, forward: bool) -> Tuple[int]:
 
 
 def __pick_simple_addend(x: int, allow_upper_bead: bool) -> int:
-    """
-    Given an integer x, randomly choose a simple, non-zero addend y between -9 and 9. By simple,
+    """Given an integer x, randomly choose a simple, non-zero addend y between -9 and 9. By simple,
     we mean the addition or subtraction only involves moving lower beads, and perhaps also moving
     one upper bead in the same rod in the opposite direction. For example, a simple "+7" involves
     moving two lower beads up and one upper bead down.
 
-    :param x: the given integer
-    :param allow_upper_bead: allow upper bead movement (in the opposite direction)?
-    :return:
+    Arguments:
+        x {int}
+            the given integer
+        allow_upper_bead {bool}
+            allow upper bead movement (in the opposite direction)?
     """
     r1 = x % 5
     r2 = x % 10
@@ -90,13 +96,13 @@ def __pick_simple_addend(x: int, allow_upper_bead: bool) -> int:
 
 
 def __pick_no_carry_borrow_addend(x: int) -> int:
-    """
-    Given an integer x, randomly choose a non-zero addend y between -9 and 9 such that the addition
+    """Given an integer x, randomly choose a non-zero addend y between -9 and 9 such that the addition
     x + y does not involve carry or borrow. In other words, the integers x and x + y have the same
     quotient mod 10.
 
-    :param x: the given integer
-    :return:
+    Arguments:
+        x {int}
+            the given integer
     """
     r = x % 10
     a = random.choice([u for u in range(0, 10) if u != r])
@@ -104,13 +110,15 @@ def __pick_no_carry_borrow_addend(x: int) -> int:
 
 
 def __extend_simple(a: int, b: int) -> Problem:
-    """
-    Given a pair of integers (a, b), randomly generate a problem of the form x + a + b or a + b + x by
+    """Given a pair of integers (a, b), randomly generate a problem of the form x + a + b or a + b + x by
     prepending or appending a simple addition or subtraction.
 
-    :param a: the first integer
-    :param b: the second integer
-    :return: Problem
+    Arguments:
+        a {int}
+            the first integer
+        b {int}
+            the second integer
+    Returns: {Problem}
     """
     prepend = __randbool(1 / 2)
     if prepend:
@@ -122,13 +130,15 @@ def __extend_simple(a: int, b: int) -> Problem:
 
 
 def __extend_no_carry_borrow(a: int, b: int) -> Problem:
-    """
-    Given a pair of integers (a, b), randomly generate a problem of the form x + a + b or a + b + x by
+    """Given a pair of integers (a, b), randomly generate a problem of the form x + a + b or a + b + x by
     prepending or appending an addition or subtraction which does not involve carry or borrow.
 
-    :param a: the first integer
-    :param b: the second integer
-    :return: Problem
+    Arguments:
+        a {int}
+            the first integer
+        b {int}
+            the second integer
+    Returns: {Problem}
     """
     prepend = __randbool(1 / 2)
     if prepend:
@@ -144,11 +154,14 @@ def __extend_no_carry_borrow(a: int, b: int) -> Problem:
 # ============================================================
 
 def __generate_simple_addition_or_subtraction(is_addition: bool, is_one_digit: bool) -> Problem:
-    """
-    Randomly generate a 1-digit simple problem using only addition or only subtraction.
-    :param is_addition: use addition?
-    :param is_one_digit: if yes, all numbers are one-digit numbers.
-    :return:
+    """Randomly generate a 1-digit simple problem using only addition or only subtraction.
+
+    Arguments:
+        is_addition {bool}
+            use addition?
+        is_one_digit {bool}
+            if yes, all numbers are one-digit numbers.
+    Returns: {Problem}
     """
     start = 0 if is_addition else 9
     path = __randpath(start, is_addition)
@@ -164,13 +177,15 @@ def __generate_simple_addition_or_subtraction(is_addition: bool, is_one_digit: b
     return Problem(a, b, c)
 
 
-def __generate_simple_addition_subtraction(max_value, allow_upper_bead) -> Problem:
-    """
-    Randomly generate a simple addition/subtraction problem.
+def __generate_simple_addition_subtraction(max_value: int, allow_upper_bead: bool) -> Problem:
+    """Randomly generate a simple addition/subtraction problem.
 
-    :param max_value: int the maximum number generated (e.g. 9 or 99)
-    :param allow_upper_bead: bool Is upper bead movement allowed?
-    :return: Problem
+    Arguments:
+        max_value {int}
+            int the maximum number generated (e.g. 9 or 99)
+        allow_upper_bead {bool}
+            bool Is upper bead movement allowed?
+    Returns: {Problem}
     """
     a = random.randint(0, max_value)
     b = __pick_simple_addend(a, allow_upper_bead)
@@ -179,72 +194,64 @@ def __generate_simple_addition_subtraction(max_value, allow_upper_bead) -> Probl
 
 
 def __generate_plus1_eq_minus4_plus5() -> Problem:
-    """
-    Generate a problem for the skill +1 = -4 + 5.
-    :return: Problem
+    """Generate a problem for the skill +1 = -4 + 5.
+    Returns: {Problem}
     """
     a = 10 * random.randint(0, 9) + 4
     return __extend_simple(a, 1)
 
 
 def __generate_minus1_eq_plus4_minus5() -> Problem:
-    """
-    Generate a problem for the skill -1 = +4 - 5.
-    :return: Problem
+    """Generate a problem for the skill -1 = +4 - 5.
+    Returns: {Problem}
     """
     a = 10 * random.randint(0, 9) + 5
     return __extend_simple(a, -1)
 
 
 def __generate_plus2_eq_minus3_plus5() -> Problem:
-    """
-    Generate a problem for the skill +2 = -3 + 5.
-    :return: Problem
+    """Generate a problem for the skill +2 = -3 + 5.
+    Returns: {Problem}
     """
     a = 10 * random.randint(0, 9) + random.choice([3, 4])
     return __extend_simple(a, 2)
 
 
 def __generate_minus2_eq_plus3_minus5() -> Problem:
-    """
-    Generate a problem for the skill -2 = +3 - 5.
-    :return: Problem
+    """Generate a problem for the skill -2 = +3 - 5.
+    Returns: {Problem}
     """
     a = 10 * random.randint(0, 9) + random.choice([5, 6])
     return __extend_simple(a, -2)
 
 
 def __generate_plus3_eq_minus2_plus5() -> Problem:
-    """
-    Generate a problem for the skill +3 = -2 + 5.
-    :return: Problem
+    """Generate a problem for the skill +3 = -2 + 5.
+    Returns: {Problem}
     """
     a = 10 * random.randint(0, 9) + random.choice([2, 3, 4])
     return __extend_simple(a, 3)
 
 
 def __generate_minus3_eq_plus2_minus5() -> Problem:
-    """
-    Generate a problem for the skill -3 = +2 - 5.
-    :return: Problem
+    """Generate a problem for the skill -3 = +2 - 5.
+    Returns: {Problem}
     """
     a = 10 * random.randint(0, 9) + random.choice([5, 6, 7])
     return __extend_simple(a, -3)
 
 
 def __generate_plus4_eq_minus1_plus5() -> Problem:
-    """
-    Generate a problem for the skill +4 = -1 + 5.
-    :return: Problem
+    """Generate a problem for the skill +4 = -1 + 5.
+    Returns: {Problem}
     """
     a = 10 * random.randint(0, 9) + random.choice([1, 2, 3, 4])
     return __extend_simple(a, 4)
 
 
 def __generate_minus4_eq_plus1_minus5() -> Problem:
-    """
-    Generate a problem for the skill -4 = +1 - 5.
-    :return: Problem
+    """Generate a problem for the skill -4 = +1 - 5.
+    Returns: {Problem}
     """
     a = 10 * random.randint(0, 9) + random.choice([5, 6, 7, 8])
     return __extend_simple(a, -4)
@@ -253,9 +260,8 @@ def __generate_minus4_eq_plus1_minus5() -> Problem:
 # ============================================================
 
 def __generate_no_carry_borrow() -> Problem:
-    """
-    Generate a problem which does not involve carry or brrow.
-    :return: Problem
+    """Generate a problem which does not involve carry or brrow.
+    Returns: {Problem}
     """
     a = 10 * random.randint(0, 9)
     x = random.randint(0, 9)
@@ -268,162 +274,144 @@ def __generate_no_carry_borrow() -> Problem:
 
 
 def __generate_plus1_eq_minus9_plus10() -> Problem:
-    """
-    Generate a problem for the skill +1 = -9 + 10.
-    :return: Problem
+    """Generate a problem for the skill +1 = -9 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + 9
     return __extend_no_carry_borrow(a, 1)
 
 
 def __generate_minus1_eq_plus9_minus10() -> Problem:
-    """
-    Generate a problem for the skill -1 = +9 - 10.
-    :return: Problem
+    """Generate a problem for the skill -1 = +9 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05)
     return __extend_no_carry_borrow(a, -1)
 
 
 def __generate_plus2_eq_minus8_plus10() -> Problem:
-    """
-    Generate a problem for the skill +2 = -8 + 10.
-    :return: Problem
+    """Generate a problem for the skill +2 = -8 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + random.choice([8, 9])
     return __extend_no_carry_borrow(a, 2)
 
 
 def __generate_minus2_eq_plus8_minus10() -> Problem:
-    """
-    Generate a problem for the skill -2 = +8 - 10.
-    :return: Problem
+    """Generate a problem for the skill -2 = +8 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05) + random.choice([0, 1])
     return __extend_no_carry_borrow(a, -2)
 
 
 def __generate_plus3_eq_minus7_plus10() -> Problem:
-    """
-    Generate a problem for the skill +3 = -7 + 10.
-    :return: Problem
+    """Generate a problem for the skill +3 = -7 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + random.choice([7, 8, 9])
     return __extend_no_carry_borrow(a, 3)
 
 
 def __generate_minus3_eq_plus7_minus10() -> Problem:
-    """
-    Generate a problem for the skill -3 = +7 - 10.
-    :return: Problem
+    """Generate a problem for the skill -3 = +7 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05) + random.choice([0, 1, 2])
     return __extend_no_carry_borrow(a, -3)
 
 
 def __generate_plus4_eq_minus6_plus10() -> Problem:
-    """
-    Generate a problem for the skill +4 = -6 + 10.
-    :return: Problem
+    """Generate a problem for the skill +4 = -6 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + random.choice([6, 7, 8, 9])
     return __extend_no_carry_borrow(a, 4)
 
 
 def __generate_minus4_eq_plus6_minus10() -> Problem:
-    """
-    Generate a problem for the skill -4 = +6 - 10.
-    :return: Problem
+    """Generate a problem for the skill -4 = +6 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05) + random.choice([0, 1, 2, 3])
     return __extend_no_carry_borrow(a, -4)
 
 
 def __generate_plus5_eq_minus5_plus10() -> Problem:
-    """
-    Generate a problem for the skill +5 = -5 + 10.
-    :return: Problem
+    """Generate a problem for the skill +5 = -5 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + random.choice([5, 6, 7, 8, 9])
     return __extend_no_carry_borrow(a, 5)
 
 
 def __generate_minus5_eq_plus5_minus10() -> Problem:
-    """
-    Generate a problem for the skill -5 = +5 - 10.
-    :return: Problem
+    """Generate a problem for the skill -5 = +5 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05) + random.choice([0, 1, 2, 3, 4])
     return __extend_no_carry_borrow(a, -5)
 
 
 def __generate_plus6_eq_minus4_plus10() -> Problem:
-    """
-    Generate a problem for the skill +6 = -4 + 10.
-    :return: Problem
+    """Generate a problem for the skill +6 = -4 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + random.choice([4, 9])
     return __extend_no_carry_borrow(a, 6)
 
 
 def __generate_minus6_eq_plus4_minus10() -> Problem:
-    """
-    Generate a problem for the skill -6 = +4 - 10.
-    :return: Problem
+    """Generate a problem for the skill -6 = +4 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05) + random.choice([0, 5])
     return __extend_no_carry_borrow(a, -6)
 
 
 def __generate_plus7_eq_minus3_plus10() -> Problem:
-    """
-    Generate a problem for the skill +7 = -3 + 10.
-    :return: Problem
+    """Generate a problem for the skill +7 = -3 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + random.choice([3, 4, 8, 9])
     return __extend_no_carry_borrow(a, 7)
 
 
 def __generate_minus7_eq_plus3_minus10() -> Problem:
-    """
-    Generate a problem for the skill -7 = +3 - 10.
-    :return: Problem
+    """Generate a problem for the skill -7 = +3 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05) + random.choice([0, 1, 5, 6])
     return __extend_no_carry_borrow(a, -7)
 
 
 def __generate_plus8_eq_minus2_plus10() -> Problem:
-    """
-    Generate a problem for the skill +8 = -2 + 10.
-    :return: Problem
+    """Generate a problem for the skill +8 = -2 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + random.choice([2, 3, 4, 7, 8, 9])
     return __extend_no_carry_borrow(a, 8)
 
 
 def __generate_minus8_eq_plus2_minus10() -> Problem:
-    """
-    Generate a problem for the skill -8 = +2 - 10.
-    :return: Problem
+    """Generate a problem for the skill -8 = +2 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05) + random.choice([0, 1, 2, 5, 6, 7])
     return __extend_no_carry_borrow(a, -8)
 
 
 def __generate_plus9_eq_minus1_plus10() -> Problem:
-    """
-    Generate a problem for the skill +9 = -1 + 10.
-    :return: Problem
+    """Generate a problem for the skill +9 = -1 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + random.choice([1, 2, 3, 4, 6, 7, 8, 9])
     return __extend_no_carry_borrow(a, 9)
 
 
 def __generate_minus9_eq_plus1_minus10() -> Problem:
-    """
-    Generate a problem for the skill -9 = +1 - 10.
-    :return: Problem
+    """Generate a problem for the skill -9 = +1 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05) + random.choice([0, 1, 2, 3, 5, 6, 7, 8])
     return __extend_no_carry_borrow(a, -9)
@@ -433,72 +421,64 @@ def __generate_minus9_eq_plus1_minus10() -> Problem:
 
 
 def __generate_plus6_eq_plus1_minus5_plus10() -> Problem:
-    """
-    Generate a problem for the skill +6 = +1 - 5 + 10.
-    :return: Problem
+    """Generate a problem for the skill +6 = +1 - 5 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + random.choice([5, 6, 7, 8])
     return __extend_no_carry_borrow(a, 6)
 
 
 def __generate_minus6_eq_minus1_plus5_minus10() -> Problem:
-    """
-    Generate a problem for the skill -6 = -1 + 5 - 10.
-    :return: Problem
+    """Generate a problem for the skill -6 = -1 + 5 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05) + random.choice([1, 2, 3, 4])
     return __extend_no_carry_borrow(a, -6)
 
 
 def __generate_plus7_eq_plus2_minus5_plus10() -> Problem:
-    """
-    Generate a problem for the skill +7 = +2 - 5 + 10.
-    :return: Problem
+    """Generate a problem for the skill +7 = +2 - 5 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + random.choice([5, 6, 7])
     return __extend_no_carry_borrow(a, 7)
 
 
 def __generate_minus7_eq_minus2_plus5_minus10() -> Problem:
-    """
-    Generate a problem for the skill -7 = -2 + 5 - 10.
-    :return: Problem
+    """Generate a problem for the skill -7 = -2 + 5 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05) + random.choice([2, 3, 4])
     return __extend_no_carry_borrow(a, -7)
 
 
 def __generate_plus8_eq_plus3_minus5_plus10() -> Problem:
-    """
-    Generate a problem for the skill +8 = +3 - 5 + 10.
-    :return: Problem
+    """Generate a problem for the skill +8 = +3 - 5 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + random.choice([5, 6])
     return __extend_no_carry_borrow(a, 8)
 
 
 def __generate_minus8_eq_minus3_plus5_minus10() -> Problem:
-    """
-    Generate a problem for the skill -8 = -3 + 5 - 10.
-    :return: Problem
+    """Generate a problem for the skill -8 = -3 + 5 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05) + random.choice([3, 4])
     return __extend_no_carry_borrow(a, -8)
 
 
 def __generate_plus9_eq_plus4_minus5_plus10() -> Problem:
-    """
-    Generate a problem for the skill +9 = +4 - 5 + 10.
-    :return: Problem
+    """Generate a problem for the skill +9 = +4 - 5 + 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no49) + random.choice([5])
     return __extend_no_carry_borrow(a, 9)
 
 
 def __generate_minus9_eq_minus4_plus5_minus10() -> Problem:
-    """
-    Generate a problem for the skill -9 = -4 + 5 - 10.
-    :return: Problem
+    """Generate a problem for the skill -9 = -4 + 5 - 10.
+    Returns: {Problem}
     """
     a = 10 * random.choice(__digits_no05) + random.choice([4])
     return __extend_no_carry_borrow(a, -9)
@@ -507,10 +487,9 @@ def __generate_minus9_eq_minus4_plus5_minus10() -> Problem:
 # ============================================================
 
 def __generate_from_4x_to_5x() -> Problem:
-    """
-    Generate a problem which involves an addition a + x = b,
+    """Generate a problem which involves an addition a + x = b,
     where 40 <= a <= 49, 1 <= x <= 9, and 50 <= b <= 59.
-    :return:
+    Returns: {Problem}
     """
     a = random.choice(range(41, 50))
     b = random.choice(range(50, a + 10))
@@ -518,10 +497,9 @@ def __generate_from_4x_to_5x() -> Problem:
 
 
 def __generate_from_5x_to_4x() -> Problem:
-    """
-    Generate a problem which involves an addition a + x = b,
+    """Generate a problem which involves an addition a + x = b,
     where 50 <= a <= 59, 1 <= x <= 9, and 40 <= b <= 49.
-    :return:
+    Returns: {Problem}
     """
     a = random.choice(range(50, 58))
     b = random.choice(range(a - 9, 50))
@@ -529,10 +507,9 @@ def __generate_from_5x_to_4x() -> Problem:
 
 
 def __generate_from_9x_to_10x() -> Problem:
-    """
-    Generate a problem which involves an addition a + x = b,
+    """Generate a problem which involves an addition a + x = b,
     where 90 <= a <= 99, 1 <= x <= 9, and 100 <= b <= 109.
-    :return:
+    Returns: {Problem}
     """
     a = random.choice(range(91, 100))
     b = random.choice(range(100, a + 10))
@@ -540,10 +517,9 @@ def __generate_from_9x_to_10x() -> Problem:
 
 
 def __generate_from_10x_to_9x() -> Problem:
-    """
-    Generate a problem which involves an addition a + x = b,
+    """Generate a problem which involves an addition a + x = b,
     where 100 <= a <= 109, 1 <= x <= 9, and 90 <= b <= 99.
-    :return:
+    Returns: {Problem}
     """
     a = random.choice(range(100, 108))
     b = random.choice(range(a - 9, 100))
