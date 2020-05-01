@@ -161,4 +161,9 @@ steps: [Step] = [
          si.from_5x_to_4x,
          si.from_9x_to_10x,
          si.from_10x_to_9x).with_description("Combo - steps 74, 75, 77, 78"),
+    Step(si.two_digit_addition),
+    Step(si.two_digit_subtraction),
+    Step(si.two_digit_addition,
+         si.two_digit_subtraction).with_description("Combo - two-digit addition/subtraction"),
+    Step(si.two_digit_mixed),
 ]

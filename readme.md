@@ -102,6 +102,10 @@ Step 77: From 9x to 10x
 Step 78: From 10x to 9x
 Step 79: Combo - steps 77, 78 (from 9x to 10x or 10x to 9x)
 Step 80: Combo - steps 74, 75, 77, 78
+Step 81: Two-digit addition
+Step 82: Two-digit subtraction
+Step 83: Combo - two-digit addition/subtraction
+Step 84: Two-digit mixed (addition and subtraction)
 
 Choose steps (e.g. 1-3, 5):
 ```

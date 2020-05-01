@@ -526,6 +526,31 @@ def __generate_from_10x_to_9x() -> Problem:
     return __extend_no_carry_borrow(a, b - a)
 
 
+def __generate_two_digit_addition() -> Problem:
+    """Generate a 2-digit addition problem of the form a + b + c.
+    Returns: {Problem}
+    """
+    numbers = random.sample(range(1, 100), 3)
+    numbers.sort()
+    return Problem(numbers[0], numbers[1] - numbers[0], numbers[2] - numbers[1])
+
+
+def __generate_two_digit_subtraction() -> Problem:
+    """Generate a 2-digit subtraction problem of the form a + b + c.
+    Returns: {Problem}
+    """
+    numbers = random.sample(range(1, 100), 3)
+    numbers.sort()
+    return Problem(numbers[2], numbers[1] - numbers[2], numbers[0] - numbers[1])
+
+
+def __generate_two_digit_mixed() -> Problem:
+    """Generate a 2-digit mixed (addition and subtraction) problem of the form a + b + c.
+    Returns: {Problem}
+    """
+    numbers = random.sample(range(1, 100), 3)
+    return Problem(numbers[0], numbers[1] - numbers[0], numbers[2] - numbers[1])
+
 # ============================================================
 # Public skills to be accessed by the Steps module.
 # ============================================================
@@ -600,3 +625,7 @@ from_4x_to_5x = Skill("From 4x to 5x", __generate_from_4x_to_5x)
 from_5x_to_4x = Skill("From 5x to 4x", __generate_from_5x_to_4x)
 from_9x_to_10x = Skill("From 9x to 10x", __generate_from_9x_to_10x)
 from_10x_to_9x = Skill("From 10x to 9x", __generate_from_10x_to_9x)
+
+two_digit_addition = Skill("Two-digit addition", __generate_two_digit_addition)
+two_digit_subtraction = Skill("Two-digit subtraction", __generate_two_digit_subtraction)
+two_digit_mixed = Skill("Two-digit mixed (addition and subtraction)", __generate_two_digit_mixed)
