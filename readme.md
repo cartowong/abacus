@@ -106,6 +106,10 @@ Step 81: Two-digit addition
 Step 82: Two-digit subtraction
 Step 83: Combo - two-digit addition/subtraction
 Step 84: Two-digit mixed (addition and subtraction)
+Step 85: Three-digit addition
+Step 86: Three-digit subtraction
+Step 87: Combo - three-digit addition/subtraction
+Step 88: Three-digit mixed (addition and subtraction)
 
 Choose steps (e.g. 1-3, 5):
 ```

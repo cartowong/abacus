@@ -551,6 +551,31 @@ def __generate_two_digit_mixed() -> Problem:
     numbers = random.sample(range(1, 100), 3)
     return Problem(numbers[0], numbers[1] - numbers[0], numbers[2] - numbers[1])
 
+def __generate_three_digit_addition() -> Problem:
+    """Generate a 3-digit addition problem of the form a + b + c.
+    Returns: {Problem}
+    """
+    numbers = random.sample(range(1, 1000), 3)
+    numbers.sort()
+    return Problem(numbers[0], numbers[1] - numbers[0], numbers[2] - numbers[1])
+
+
+def __generate_three_digit_subtraction() -> Problem:
+    """Generate a 3-digit subtraction problem of the form a + b + c.
+    Returns: {Problem}
+    """
+    numbers = random.sample(range(1, 1000), 3)
+    numbers.sort()
+    return Problem(numbers[2], numbers[1] - numbers[2], numbers[0] - numbers[1])
+
+
+def __generate_three_digit_mixed() -> Problem:
+    """Generate a 3-digit mixed (addition and subtraction) problem of the form a + b + c.
+    Returns: {Problem}
+    """
+    numbers = random.sample(range(1, 1000), 3)
+    return Problem(numbers[0], numbers[1] - numbers[0], numbers[2] - numbers[1])
+
 # ============================================================
 # Public skills to be accessed by the Steps module.
 # ============================================================
@@ -629,3 +654,7 @@ from_10x_to_9x = Skill("From 10x to 9x", __generate_from_10x_to_9x)
 two_digit_addition = Skill("Two-digit addition", __generate_two_digit_addition)
 two_digit_subtraction = Skill("Two-digit subtraction", __generate_two_digit_subtraction)
 two_digit_mixed = Skill("Two-digit mixed (addition and subtraction)", __generate_two_digit_mixed)
+
+three_digit_addition = Skill("Three-digit addition", __generate_three_digit_addition)
+three_digit_subtraction = Skill("Three-digit subtraction", __generate_three_digit_subtraction)
+three_digit_mixed = Skill("Three-digit mixed (addition and subtraction)", __generate_three_digit_mixed)
